@@ -1,7 +1,7 @@
 ## 프로젝트 설명
 음원 스트리밍 및 가사 제공, 음원 순위, 아티스트 조회, 검색 등을 제공하는 서비스입니다.
 
-### 프로젝트 기능 및 설계
+## 프로젝트 기능 및 설계
 - 회원가입 기능
   - 사용자는 일반 회원과 관리자 회원으로 나뉘어 진행할 수 있다.
   - 아이디는 unique 해야 하며, 패스워드는 암호화하여 저장된다.
@@ -106,5 +106,20 @@
 - 음원 삭제 기능
   - 관리자 회원만 음원을 삭제할 수 있다.
 
-### ERD
+## ERD
 ![music_ERD](https://github.com/user-attachments/assets/4835e1ce-a718-42e1-88e3-ad09d1a4fa52)
+
+## Trouble Shooting
+
+## Tech Stack
+- Backend
+  - Java 11
+  - Spring Boot 2.7.18
+  - Spring Data JPA
+
+- Database
+  - MySQL
+  - MongoDB
+  - AWS S3
+  - Elasticsearch
+  - Redis
