@@ -127,8 +127,8 @@
   - Spring Data JPA
 
 - Database
-  - MySQL
-  - MongoDB
-  - AWS S3
-  - Elasticsearch
-  - Redis
+  - MySQL: 사용자/음원/앨범/음원 등 핵심 관계 데이터 관리
+  - MongoDB: 스트리밍 로그 관리
+  - AWS S3: 음원 파일, 가사 파일, 이미지 파일 등 저장
+  - Elasticsearch: 통합 검색 기능
+  - Redis: 캐싱 기능
