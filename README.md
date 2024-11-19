@@ -14,6 +14,8 @@
   - 음원 상태가 'RELEASED'인 음원만 스트리밍할 수 있다.
   - 하나의 음원 스트리밍이 종료될 때마다 진행한 스트리밍의 정보를 저장한다.
   - 사용자의 네트워크 환경에 따라 품질을 조정하여 스트리밍을 제공한다.
+  - 스트리밍이 종료되면 해당 스트리밍에 대한 정보 로그를 남긴다.
+  - 로그 정보: 사용자 ID, 음원 ID, 재생 시작 시간, 재생 종료 시간, 음원 전체 길이(초) 실제 재생 시간(초)
  
 - 가사 제공 기능
   - 음원 스트리밍을 진행하면 해당 음원의 가사가 제공된다.
@@ -116,7 +118,7 @@
   - DB에서 삭제하지 않음
 
 ## ERD
-![music_ERD_최종](https://github.com/user-attachments/assets/661152d1-743d-430a-8ae1-d3d545aa91c2)
+![music_ERD](https://github.com/user-attachments/assets/98754de0-876a-4a82-8436-7d4c0b4ef7d6)
 
 ## Trouble Shooting
 
