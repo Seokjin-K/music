@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-platform.iml" filepath="$PROJECT_DIR$/.idea/modules/music-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/artist/music-platform.artist.iml" filepath="$PROJECT_DIR$/.idea/modules/artist/music-platform.artist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/artist/music-platform.artist.main.iml" filepath="$PROJECT_DIR$/.idea/modules/artist/music-platform.artist.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/artist/music-platform.artist.test.iml" filepath="$PROJECT_DIR$/.idea/modules/artist/music-platform.artist.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/music-platform.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/music-platform.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/music-platform.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/music-platform.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/music-platform.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/music-platform.common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/music-platform.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/music-platform.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/music-platform.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/music-platform.core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/music-platform.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/music-platform.core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/music/music-platform.music.iml" filepath="$PROJECT_DIR$/.idea/modules/music/music-platform.music.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/music/music-platform.music.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music/music-platform.music.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/music/music-platform.music.test.iml" filepath="$PROJECT_DIR$/.idea/modules/music/music-platform.music.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/playlist/music-platform.playlist.iml" filepath="$PROJECT_DIR$/.idea/modules/playlist/music-platform.playlist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/playlist/music-platform.playlist.main.iml" filepath="$PROJECT_DIR$/.idea/modules/playlist/music-platform.playlist.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/playlist/music-platform.playlist.test.iml" filepath="$PROJECT_DIR$/.idea/modules/playlist/music-platform.playlist.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/search/music-platform.search.iml" filepath="$PROJECT_DIR$/.idea/modules/search/music-platform.search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/search/music-platform.search.main.iml" filepath="$PROJECT_DIR$/.idea/modules/search/music-platform.search.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/search/music-platform.search.test.iml" filepath="$PROJECT_DIR$/.idea/modules/search/music-platform.search.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/statistics/music-platform.statistics.iml" filepath="$PROJECT_DIR$/.idea/modules/statistics/music-platform.statistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/statistics/music-platform.statistics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/statistics/music-platform.statistics.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/statistics/music-platform.statistics.test.iml" filepath="$PROJECT_DIR$/.idea/modules/statistics/music-platform.statistics.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user/music-platform.user.iml" filepath="$PROJECT_DIR$/.idea/modules/user/music-platform.user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user/music-platform.user.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user/music-platform.user.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user/music-platform.user.test.iml" filepath="$PROJECT_DIR$/.idea/modules/user/music-platform.user.test.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,1 +1,10 @@
-rootProject.name = 'music'
+rootProject.name = 'music-platform'
+include 'common'
+include 'core'
+include 'user'
+include 'artist'
+include 'music'
+include 'playlist'
+include 'search'
+include 'statistics'
+
