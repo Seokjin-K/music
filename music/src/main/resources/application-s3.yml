@@ -1,0 +1,12 @@
+aws:
+  access-key: ${AWS_ACCESS_KEY}
+  secret-key: ${AWS_SECRET_KEY}
+  region: ${AWS_REGION}
+  s3:
+    bucket: ${AWS_S3_BUCKET}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB # 임시로 설정
+      max-request-size: 50MB # 임시로 설정
