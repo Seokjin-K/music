@@ -4,8 +4,6 @@ import com.music.eneity.constants.AlbumType;
 import com.music.eneity.constants.Genre;
 import com.music.eneity.constants.ReleaseStatus;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,12 +49,12 @@ public class Album extends BaseEntity{
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private AlbumType albumType;
+  private AlbumType type;
 
   @Column(nullable = false)
   private LocalDate releaseAt;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private ReleaseStatus releaseStatus;
+  private ReleaseStatus status;
 }
