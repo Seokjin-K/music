@@ -1,4 +1,4 @@
-package com.music.infra.s3.config;
+package com.music.s3.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

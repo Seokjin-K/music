@@ -1,4 +1,4 @@
-package com.music.infra.validator;
+package com.music.validator;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,8 +1,7 @@
-package com.music.infra.s3;
+package com.music.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.music.constatns.FileType;
@@ -13,12 +12,10 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-@Primary // 구현체가 여러 개일 때 해당 클래스를 우선 주입
 @RequiredArgsConstructor
 @Slf4j
 public class S3StorageService implements FileStorageService {
@@ -30,7 +27,7 @@ public class S3StorageService implements FileStorageService {
 
   @Override
   public String uploadFile(MultipartFile file, FileType fileType) {
-    validateFile(file, fileType); // 검증
+    validateBasicFile(file);
     return s3UploadFile(file, fileType); // 업로드 성공 시 파일키 반환
   }
 
@@ -45,7 +42,8 @@ public class S3StorageService implements FileStorageService {
 
       PutObjectRequest putObjectRequest =
           new PutObjectRequest(bucket, fileName, inputStream, metadata);
-      amazonS3.putObject(putObjectRequest);
+
+      amazonS3.putObject(putObjectRequest); // 업로드
 
       String fileKey = amazonS3.getUrl(bucket, fileName).toString();
       log.info("파일 업로드 성공. fileKey: {}, fileName: {}, metadata: {}",
@@ -72,11 +70,6 @@ public class S3StorageService implements FileStorageService {
     metadata.setContentType(file.getContentType());
     metadata.setContentLength(file.getSize());
     return metadata;
-  }
-
-  private void validateFile(MultipartFile file, FileType fileType) {
-    validateBasicFile(file);
-    fileType.getFileValidator().validate(file); // 타입에 따라 다른 구현체의 validate 메서드 실행
   }
 
   private void validateBasicFile(MultipartFile file) {

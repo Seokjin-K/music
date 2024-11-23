@@ -1,7 +1,6 @@
-package com.music.infra.validator.impl;
+package com.music.validator;
 
 import com.music.constatns.AudioContentType;
-import com.music.infra.validator.FileValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
