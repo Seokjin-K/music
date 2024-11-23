@@ -35,7 +35,7 @@ public class Music extends BaseEntity{
   @Column(nullable = false)
   private String musicFileKey;
 
-  private String lyricsFileKey;
+  private String lyricFileKey;
 
   @Column(nullable = false, length = 200)
   private String title;
