@@ -19,7 +19,7 @@ public class MusicController {
 
   private final MusicService musicService;
 
-  @PostMapping(value = "/upload")
+  @PostMapping("/upload")
   public ResponseEntity<MusicResponse> musicUpload(
       @Valid @RequestPart MusicUploadRequest request,
       @RequestPart MultipartFile musicFile,
