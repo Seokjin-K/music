@@ -27,7 +27,7 @@ public class MusicResponse {
         .id(music.getId())
         .albumId(music.getAlbum().getId())
         .musicFileKey(music.getMusicFileKey())
-        .lyricsFileKey(music.getLyricsFileKey())
+        .lyricsFileKey(music.getLyricFileKey())
         .title(music.getTitle())
         .trackNumber(music.getTrackNumber())
         .duration(music.getDuration())

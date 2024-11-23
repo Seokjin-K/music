@@ -31,14 +31,16 @@ public class MusicService {
       MusicUploadRequest request, MultipartFile musicFile, MultipartFile lyricFile) {
 
     Album album = validateAlbum(request.getAlbumId()); // 유효한 앨범인지 검증
+    validateFile(musicFile, FileType.MUSIC); // 음원 파일 검증
     String musicFileKey = fileStorageService.uploadFile(musicFile, FileType.MUSIC); // 음원 업로드
 
-    String lyricsFileUrl = null;
-    if (lyricFile != null && lyricFile.isEmpty()) {
-      lyricsFileUrl = fileStorageService.uploadFile(lyricFile, FileType.LYRICS); // 가사 업로드
+    String lyricFilekey = null;
+    if (lyricFile != null && !lyricFile.isEmpty()) {
+      validateFile(lyricFile, FileType.LYRIC);
+      lyricFilekey = fileStorageService.uploadFile(lyricFile, FileType.LYRIC); // 가사 업로드
     }
 
-    Music music = createMusic(request, album, musicFileKey, lyricsFileUrl);
+    Music music = createMusic(request, album, musicFileKey, lyricFilekey);
     musicRepository.save(music);
 
     // TODO: 발매일 오후6에 'RELEASED' 상태 되도록 스케줄링 등록 필요
@@ -46,13 +48,17 @@ public class MusicService {
     return MusicResponse.from(music);
   }
 
+  private void validateFile(MultipartFile file, FileType fileType) {
+    fileType.getFileValidator().validate(file); // 타입에 따라 다른 구현체의 validate 메서드 실행
+  }
+
   private Music createMusic(
-      MusicUploadRequest request, Album album, String musicFileKey, String lyricsFileKey) {
+      MusicUploadRequest request, Album album, String musicFileKey, String lyricFileKey) {
 
     return Music.builder()
         .album(album)
         .musicFileKey(musicFileKey)
-        .lyricsFileKey(lyricsFileKey)
+        .lyricFileKey(lyricFileKey)
         .title(request.getTitle())
         .trackNumber(request.getTrackNumber())
         .duration(request.getDuration())
