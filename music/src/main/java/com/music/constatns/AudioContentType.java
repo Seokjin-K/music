@@ -3,7 +3,6 @@ package com.music.constatns;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Getter;
@@ -32,14 +31,11 @@ public enum AudioContentType {
           .collect(Collectors.toMap(AudioContentType::getMimeType, t -> t));
 
   public static boolean isSupportedAudioType(String mimeType) {
-    return Optional.ofNullable(MIME_TYPE_MAP.get(mimeType))
-        .map(SUPPORTED_TYPES::contains)
-        .orElse(false);
+    return MIME_TYPE_MAP.containsKey(mimeType);
   }
 
   public static Long getMaxSize(String mimeType) {
-    return Optional.ofNullable(MIME_TYPE_MAP.get(mimeType))
-        .map(AudioContentType::getMaxSize)
-        .orElse(0L);
+    AudioContentType audioContentType = MIME_TYPE_MAP.getOrDefault(mimeType, null);
+    return audioContentType != null ? audioContentType.getMaxSize() : 0L;
   }
 }
