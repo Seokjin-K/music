@@ -2,7 +2,7 @@ package com.music.controller;
 
 import com.music.dto.MusicResponse;
 import com.music.dto.MusicUploadRequest;
-import com.music.service.MusicService;
+import com.music.service.MusicUploadService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/v1/music")
 public class MusicController {
 
-  private final MusicService musicService;
+  private final MusicUploadService musicService;
 
   @PostMapping("/upload")
   public ResponseEntity<MusicResponse> musicUpload(
