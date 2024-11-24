@@ -13,15 +13,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.projectlombok:lombok:1.18.30" level="project" />
-    <orderEntry type="module" module-name="music-platform.artist.main" />
     <orderEntry type="module" module-name="music-platform.common.main" />
     <orderEntry type="module" module-name="music-platform.core.main" />
     <orderEntry type="module" module-name="music-platform.infrastructure.main" />
     <orderEntry type="module" module-name="music-platform.music.main" />
-    <orderEntry type="module" module-name="music-platform.playlist.main" />
-    <orderEntry type="module" module-name="music-platform.search.main" />
-    <orderEntry type="module" module-name="music-platform.statistics.main" />
-    <orderEntry type="module" module-name="music-platform.user.main" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:2.7.18" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-jpa:2.7.18" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-json:2.7.18" level="project" />
