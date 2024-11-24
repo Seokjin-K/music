@@ -9,6 +9,8 @@
         </processorPath>
         <module name="music-platform.artist.main" />
         <module name="music-platform.music.main" />
+        <module name="music-platform.api.main" />
+        <module name="music-platform.infrastructure.main" />
         <module name="music-platform.common.main" />
         <module name="music-platform.user.main" />
         <module name="music-platform.statistics.main" />

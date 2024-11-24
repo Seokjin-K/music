@@ -7,4 +7,6 @@ include 'music'
 include 'playlist'
 include 'search'
 include 'statistics'
+include 'infrastructure'
+include 'api'
 
