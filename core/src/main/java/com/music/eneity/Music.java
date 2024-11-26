@@ -23,7 +23,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Music extends BaseEntity{
+public class Music extends BaseEntity {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -34,8 +35,6 @@ public class Music extends BaseEntity{
 
   @Column(nullable = false)
   private String musicFileKey;
-
-  private String lyricFileKey;
 
   @Column(nullable = false, length = 200)
   private String title;
