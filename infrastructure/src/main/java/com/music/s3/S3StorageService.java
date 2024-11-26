@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.music.constatns.FileType;
+import com.music.constatns.StreamQuality;
 import com.music.service.FileStorageService;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,9 +32,24 @@ public class S3StorageService implements FileStorageService {
     return s3UploadFile(file, fileType); // 업로드 성공 시 파일키 반환
   }
 
+  @Override
+  public StreamQuality determineQuality(String networkQuality) {
+    return null;
+  }
+
+  @Override
+  public InputStream getFileStream(String fileKey, StreamQuality quality) {
+    try {
+      return amazonS3.getObject(bucket, fileKey).getObjectContent();
+    } catch (AmazonS3Exception e) {
+      log.error("파일 가져오기 실패. key: {}, error: {}", fileKey, e.getMessage());
+      throw new RuntimeException(); // TODO: CustomException 으로 변경
+    }
+  }
+
   private String s3UploadFile(MultipartFile file, FileType fileType) {
     String directory = fileType.getDirectory();
-    String fileName = createFileName(file.getOriginalFilename(), directory);
+    String fileKey = createFileKey(file.getOriginalFilename(), directory);
     ObjectMetadata metadata = createMetadata(file);
 
     // InputStream 방식
@@ -41,27 +57,26 @@ public class S3StorageService implements FileStorageService {
     try (InputStream inputStream = file.getInputStream()) {
 
       PutObjectRequest putObjectRequest =
-          new PutObjectRequest(bucket, fileName, inputStream, metadata);
+          new PutObjectRequest(bucket, fileKey, inputStream, metadata);
 
       amazonS3.putObject(putObjectRequest); // 업로드
 
-      String fileKey = amazonS3.getUrl(bucket, fileName).toString();
       log.info("파일 업로드 성공. fileKey: {}, fileName: {}, metadata: {}",
-          fileKey, fileName, metadata);
+          fileKey, fileKey, metadata);
       return fileKey;
 
     } catch (IOException e) {
-      log.error("파일 업로드 실패. fileType: {}, fileName: {}", directory, fileName);
+      log.error("파일 업로드 실패. fileType: {}, fileName: {}", directory, fileKey);
       throw new RuntimeException(); // TODO: CustomException 으로 변경
 
     } catch (AmazonS3Exception e) {
       log.error("S3 업로드 중 오류 발생. fileType: {}, fileName: {}, errorCode: {}",
-          directory, fileName, e.getErrorCode(), e);
+          directory, fileKey, e.getErrorCode(), e);
       throw new RuntimeException(); // TODO: CustomException 으로 변경
     }
   }
 
-  private String createFileName(String originalFilename, String directory) {
+  private String createFileKey(String originalFilename, String directory) {
     return String.format("%s/%s_%s", directory, UUID.randomUUID(), originalFilename);
   }
 
