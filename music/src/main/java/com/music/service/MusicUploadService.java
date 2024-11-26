@@ -87,11 +87,10 @@ public class MusicUploadService {
     validateFile(lyricFile, FileType.LYRIC);
     String lyricsFileKey = fileStorageService.uploadFile(lyricFile, FileType.LYRIC);
 
-    log.info("\ncontentType: {}\n", lyricFile.getContentType());
     Lyrics build = Lyrics.builder()
         .music(music)
         .lyricsFileKey(lyricsFileKey)
-        .format(LyricsMimeType.getFormatByContentType(lyricFile.getContentType()))
+        .lyricsFormat(LyricsMimeType.getFormatByContentType(lyricFile.getContentType()))
         .build();
 
     lyricsRepository.save(build);

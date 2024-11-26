@@ -36,5 +36,5 @@ public class Lyrics {
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private LyricsFormat format;
+  private LyricsFormat lyricsFormat;
 }
