@@ -1,5 +1,6 @@
 package com.music.service;
 
+import com.music.dto.StreamResponse;
 import com.music.eneity.Music;
 import com.music.eneity.constants.ReleaseStatus;
 import com.music.repository.MusicRepository;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,17 +58,18 @@ class MusicStreamingServiceTest {
         .thenReturn(Optional.of(music)); // 음원 조회 시 생성한 music 객체 반환하도록 설정
 
     // fileStorageService 동작 정의
-    when(fileStorageService.getFileStream(anyString()))
+    when(fileStorageService.getFileStream(fileKey))
         .thenReturn(new ByteArrayInputStream(new byte[0])); // 빈 스트림 반환하도록 설정
     // ByteArrayInputStream : 실제 리소스가 없이도 동작 가능
 
     // when
-    ResponseEntity<Resource> response = musicStreamingService.musicStreaming(musicId, headers);
+    StreamResponse response = musicStreamingService.musicStreaming(musicId, headers);
 
     // then
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(response.getHeaders().getContentType())
         .isEqualTo(MediaType.parseMediaType("audio/mpeg"));
+    assertThat(response.getResource())
+        .isInstanceOf(InputStreamResource.class);
   }
 
   @Test
