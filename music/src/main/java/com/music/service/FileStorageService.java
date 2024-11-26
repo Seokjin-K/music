@@ -13,5 +13,5 @@ public interface FileStorageService {
 
   StreamQuality determineQuality(String networkQuality);
 
-  InputStream getFileStream(String musicFileKey, StreamQuality quality);
+  InputStream getFileStream(String musicFileKey);
 }

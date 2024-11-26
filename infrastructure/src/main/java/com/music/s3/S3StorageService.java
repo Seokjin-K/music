@@ -38,7 +38,7 @@ public class S3StorageService implements FileStorageService {
   }
 
   @Override
-  public InputStream getFileStream(String fileKey, StreamQuality quality) {
+  public InputStream getFileStream(String fileKey) {
     try {
       return amazonS3.getObject(bucket, fileKey).getObjectContent();
     } catch (AmazonS3Exception e) {

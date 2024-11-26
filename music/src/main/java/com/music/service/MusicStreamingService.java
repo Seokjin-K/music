@@ -34,7 +34,7 @@ public class MusicStreamingService {
     //streamingLogService.recordStart(musicId, userId); // TODO: 스트리밍 시작 기록
 
     InputStream audioStream =
-        fileStorageService.getFileStream(music.getMusicFileKey(), streamQuality);
+        fileStorageService.getFileStream(music.getMusicFileKey());
     InputStreamResource resource = new InputStreamResource(audioStream);
     HttpHeaders responseHeaders = new HttpHeaders(); // 응답 헤더 객체 생성
 
