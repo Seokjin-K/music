@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/music")
-public class MusicController {
+public class MusicUploadController {
 
   private final MusicUploadService musicService;
 
