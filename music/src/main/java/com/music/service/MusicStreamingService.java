@@ -1,11 +1,16 @@
 package com.music.service;
 
-import com.music.constatns.StreamQuality;
+import com.music.dto.LyricsResponse;
 import com.music.dto.StreamResponse;
 import com.music.eneity.Music;
 import com.music.eneity.constants.ReleaseStatus;
+import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
@@ -20,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MusicStreamingService {
 
   private final MusicRepository musicRepository;
+  private final LyricsRepository lyricsRepository;
   private final FileStorageService fileStorageService;
 
   @Transactional(readOnly = true)
@@ -27,17 +33,11 @@ public class MusicStreamingService {
 
     Music music = getMusic(musicId);
 
-    StreamQuality streamQuality =
-        StreamQuality.from(headers.getFirst("Network-Quality"));
-
-    //streamingLogService.recordStart(musicId, userId); // TODO: 스트리밍 시작 기록
-
     InputStream audioStream =
         fileStorageService.getFileStream(music.getMusicFileKey());
     InputStreamResource resource = new InputStreamResource(audioStream);
-    HttpHeaders responseHeaders = new HttpHeaders(); // 응답 헤더 객체 생성
 
-    // 브라우저에서 오디오 재생을 자동으로 지원
+    HttpHeaders responseHeaders = new HttpHeaders(); // 응답 헤더 객체 생성
     responseHeaders.setContentType(MediaType.parseMediaType("audio/mpeg"));
 
     return StreamResponse.builder()
@@ -46,9 +46,30 @@ public class MusicStreamingService {
         .build();
   }
 
+  public LyricsResponse getLyrics(Long musicId) {
+    return lyricsRepository.findByMusicId(musicId)
+        .map(lyrics -> LyricsResponse.builder()
+            .format(lyrics.getLyricsFormat())
+            .content(getLyricsContent(lyrics.getLyricsFileKey()))
+            .build())
+        .orElse(LyricsResponse.builder()
+            .format(null)
+            .content("가사 정보가 없습니다.")
+            .build());
+  }
+
   private Music getMusic(Long musicId) {
     return musicRepository
         .findByIdAndReleaseStatus(musicId, ReleaseStatus.RELEASED)
         .orElseThrow(RuntimeException::new); // TODO: CustomException 으로 변경
+  }
+
+  private String getLyricsContent(String fileKey) {
+    try (InputStream inputStream = fileStorageService.getFileStream(fileKey);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+      return reader.lines().collect(Collectors.joining("\n"));
+    } catch (IOException e) {
+      throw new RuntimeException(); // TODO: CustomException 으로 변경
+    }
   }
 }
