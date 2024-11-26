@@ -41,4 +41,8 @@ public enum LyricsMimeType {
     return Optional.ofNullable(MIME_TYPE_MAP.get(mimeType).getFormat())
         .orElseThrow(RuntimeException::new);
   }
+
+  public static boolean isValidMimeTypeForExtension(String mimeType, String extension) {
+    return MIME_TYPE_MAP.get(mimeType).getExtension().equals(extension);
+  }
 }
