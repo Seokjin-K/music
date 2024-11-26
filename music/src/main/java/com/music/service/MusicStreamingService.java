@@ -26,9 +26,7 @@ public class MusicStreamingService {
   @Transactional(readOnly = true)
   public ResponseEntity<Resource> musicStreaming(Long musicId, HttpHeaders headers) {
 
-    Music music = musicRepository
-        .findByIdAndReleaseStatus(musicId, ReleaseStatus.RELEASED)
-        .orElseThrow(RuntimeException::new); // TODO: CustomException 으로 변경
+    Music music = validateMusic(musicId);
 
     StreamQuality streamQuality =
         StreamQuality.from(headers.getFirst("Network-Quality"));
@@ -46,5 +44,11 @@ public class MusicStreamingService {
     return ResponseEntity.ok()
         .headers(responseHeaders)
         .body(resource);
+  }
+
+  private Music validateMusic(Long musicId) {
+    return musicRepository
+        .findByIdAndReleaseStatus(musicId, ReleaseStatus.RELEASED)
+        .orElseThrow(RuntimeException::new); // TODO: CustomException 으로 변경
   }
 }
