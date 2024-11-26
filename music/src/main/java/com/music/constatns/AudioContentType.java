@@ -22,9 +22,6 @@ public enum AudioContentType {
   private final String extension;
   private final Long maxSize;
 
-  // 현재 지원하는 타입만 설정
-  private static final Set<AudioContentType> SUPPORTED_TYPES = EnumSet.of(AAC, MP3, FLAC);
-
   // key: mimeType, value: AudioContentType Enum
   private static final Map<String, AudioContentType> MIME_TYPE_MAP =
       Arrays.stream(values())
