@@ -1,5 +1,6 @@
 package com.music.controller;
 
+import com.music.dto.StreamResponse;
 import com.music.service.MusicStreamingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -22,7 +23,10 @@ public class MusicStreamingController {
   public ResponseEntity<Resource> musicStream(
       @PathVariable Long musicId,
       @RequestHeader HttpHeaders headers) {
-    return musicStreamingService.musicStreaming(musicId, headers);
+    StreamResponse response = musicStreamingService.musicStreaming(musicId, headers);
+    return ResponseEntity.ok()
+        .headers(response.getHeaders())
+        .body(response.getResource());
   }
 
 }
