@@ -1,6 +1,7 @@
 package com.music.service;
 
 import com.music.constatns.StreamQuality;
+import com.music.dto.StreamResponse;
 import com.music.eneity.Music;
 import com.music.eneity.constants.ReleaseStatus;
 import com.music.repository.MusicRepository;
@@ -24,9 +25,9 @@ public class MusicStreamingService {
   private final FileStorageService fileStorageService;
 
   @Transactional(readOnly = true)
-  public ResponseEntity<Resource> musicStreaming(Long musicId, HttpHeaders headers) {
+  public StreamResponse musicStreaming(Long musicId, HttpHeaders headers) {
 
-    Music music = validateMusic(musicId);
+    Music music = getMusic(musicId);
 
     StreamQuality streamQuality =
         StreamQuality.from(headers.getFirst("Network-Quality"));
@@ -40,13 +41,14 @@ public class MusicStreamingService {
 
     // 브라우저에서 오디오 재생을 자동으로 지원
     responseHeaders.setContentType(MediaType.parseMediaType("audio/mpeg"));
-
-    return ResponseEntity.ok()
+    
+    return StreamResponse.builder()
         .headers(responseHeaders)
-        .body(resource);
+        .resource(resource)
+        .build();
   }
 
-  private Music validateMusic(Long musicId) {
+  private Music getMusic(Long musicId) {
     return musicRepository
         .findByIdAndReleaseStatus(musicId, ReleaseStatus.RELEASED)
         .orElseThrow(RuntimeException::new); // TODO: CustomException 으로 변경
