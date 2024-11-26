@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Service
-@Primary // 구현체가 여러 개일 때 해당 클래스 우선 주입
 @Transactional
 @RequiredArgsConstructor
 public class MusicUploadService {

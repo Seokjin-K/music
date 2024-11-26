@@ -9,10 +9,8 @@ import java.io.InputStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +39,7 @@ public class MusicStreamingService {
 
     // 브라우저에서 오디오 재생을 자동으로 지원
     responseHeaders.setContentType(MediaType.parseMediaType("audio/mpeg"));
-    
+
     return StreamResponse.builder()
         .headers(responseHeaders)
         .resource(resource)
