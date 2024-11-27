@@ -1,5 +1,6 @@
 package com.music.controller;
 
+import com.music.dto.LyricsResponse;
 import com.music.dto.StreamResponse;
 import com.music.service.MusicStreamingService;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +24,15 @@ public class MusicStreamingController {
   public ResponseEntity<Resource> musicStream(
       @PathVariable Long musicId,
       @RequestHeader HttpHeaders headers) {
+
     StreamResponse response = musicStreamingService.musicStreaming(musicId, headers);
     return ResponseEntity.ok()
         .headers(response.getHeaders())
         .body(response.getResource());
   }
 
+  @GetMapping("/{musicId}/lyrics")
+  public ResponseEntity<LyricsResponse> getLyrics(@PathVariable Long musicId) {
+    return ResponseEntity.ok(musicStreamingService.getLyrics(musicId));
+  }
 }

@@ -1,9 +1,14 @@
 package com.music.service;
 
+import com.music.dto.LyricsResponse;
 import com.music.dto.StreamResponse;
+import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
+import com.music.eneity.constants.LyricsFormat;
 import com.music.eneity.constants.ReleaseStatus;
+import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
+import java.io.InputStream;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,9 +18,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import java.io.ByteArrayInputStream;
 
@@ -23,7 +25,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 
@@ -39,6 +40,9 @@ class MusicStreamingServiceTest {
   @Mock
   private FileStorageService fileStorageService;
 
+  @Mock
+  private LyricsRepository lyricsRepository;
+
   @Test
   @DisplayName("음원 스트리밍 - 성공")
   void musicStreaming_Success() {
@@ -53,14 +57,11 @@ class MusicStreamingServiceTest {
 
     HttpHeaders headers = new HttpHeaders();
 
-    // musicRepository 동작 정의
     when(musicRepository.findByIdAndReleaseStatus(musicId, ReleaseStatus.RELEASED))
-        .thenReturn(Optional.of(music)); // 음원 조회 시 생성한 music 객체 반환하도록 설정
+        .thenReturn(Optional.of(music));
 
-    // fileStorageService 동작 정의
     when(fileStorageService.getFileStream(fileKey))
-        .thenReturn(new ByteArrayInputStream(new byte[0])); // 빈 스트림 반환하도록 설정
-    // ByteArrayInputStream : 실제 리소스가 없이도 동작 가능
+        .thenReturn(new ByteArrayInputStream(new byte[0]));
 
     // when
     StreamResponse response = musicStreamingService.musicStreaming(musicId, headers);
@@ -83,5 +84,51 @@ class MusicStreamingServiceTest {
     assertThatThrownBy(() ->
         musicStreamingService.musicStreaming(1L, new HttpHeaders()))
         .isInstanceOf(RuntimeException.class); // TODO: CustomException 으로 변경
+  }
+
+  @Test
+  @DisplayName("가사 가져오기 - 성공")
+  void getLyrics_Success() {
+    // given
+    Long musicId = 1L;
+    String fileKey = "test-key";
+    String content = "[00:01.00]첫번째 가사\n[00:05.00]두번째 가사";
+
+    Lyrics lyrics = Lyrics.builder()
+        .lyricsFileKey(fileKey)
+        .lyricsFormat(LyricsFormat.LRC)
+        .build();
+
+    InputStream inputStream = new ByteArrayInputStream(content.getBytes());
+
+    when(lyricsRepository.findByMusicId(musicId))
+        .thenReturn(Optional.of(lyrics));
+    when(fileStorageService.getFileStream(fileKey))
+        .thenReturn(inputStream);
+
+    // when
+    LyricsResponse response = musicStreamingService.getLyrics(musicId);
+
+    // then
+    assertThat(response).isNotNull();
+    assertThat(response.getFormat()).isEqualTo(LyricsFormat.LRC);
+    assertThat(response.getContent()).isEqualTo(content);
+  }
+
+  @Test
+  @DisplayName("가사 가져오기 - 실패")
+  void getLyrics_Fail() {
+    // given
+    Long musicId = 1L;
+    when(lyricsRepository.findByMusicId(musicId))
+        .thenReturn(Optional.empty());
+
+    // when
+    LyricsResponse response = musicStreamingService.getLyrics(musicId);
+
+    // then
+    assertThat(response).isNotNull();
+    assertThat(response.getFormat()).isNull();
+    assertThat(response.getContent()).isEqualTo("가사 정보가 없습니다.");
   }
 }
