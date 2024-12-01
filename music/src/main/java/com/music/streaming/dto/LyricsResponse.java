@@ -1,4 +1,4 @@
-package com.music.dto;
+package com.music.streaming.dto;
 
 import com.music.eneity.constants.LyricsFormat;
 import lombok.Builder;

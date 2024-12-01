@@ -1,8 +1,8 @@
 package com.music.controller;
 
-import com.music.dto.LyricsResponse;
-import com.music.dto.StreamResponse;
-import com.music.service.MusicStreamingService;
+import com.music.streaming.dto.LyricsResponse;
+import com.music.streaming.dto.StreamResponse;
+import com.music.streaming.service.MusicStreamingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

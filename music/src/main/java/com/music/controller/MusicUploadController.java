@@ -1,8 +1,8 @@
 package com.music.controller;
 
-import com.music.dto.MusicResponse;
-import com.music.dto.MusicUploadRequest;
-import com.music.service.MusicUploadService;
+import com.music.upload.dto.MusicResponse;
+import com.music.upload.dto.MusicUploadRequest;
+import com.music.upload.service.MusicUploadService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +24,6 @@ public class MusicUploadController {
       @Valid @RequestPart MusicUploadRequest request,
       @RequestPart MultipartFile musicFile,
       @RequestPart(required = false) MultipartFile lyricFile) {
-    return ResponseEntity.ok(musicService.musicUpload(request, musicFile, lyricFile));
+    return ResponseEntity.ok(musicService.uploadMusic(request, musicFile, lyricFile));
   }
 }

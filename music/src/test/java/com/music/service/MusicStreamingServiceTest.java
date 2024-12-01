@@ -1,13 +1,15 @@
 package com.music.service;
 
-import com.music.dto.LyricsResponse;
-import com.music.dto.StreamResponse;
+import com.music.adaptor.FileStorage;
+import com.music.streaming.dto.LyricsResponse;
+import com.music.streaming.dto.StreamResponse;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
 import com.music.eneity.constants.LyricsFormat;
 import com.music.eneity.constants.ReleaseStatus;
 import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
+import com.music.streaming.service.MusicStreamingService;
 import java.io.InputStream;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -38,7 +40,7 @@ class MusicStreamingServiceTest {
   private MusicRepository musicRepository;
 
   @Mock
-  private FileStorageService fileStorageService;
+  private FileStorage fileStorageService;
 
   @Mock
   private LyricsRepository lyricsRepository;
@@ -52,7 +54,7 @@ class MusicStreamingServiceTest {
 
     Music music = Music.builder()
         .id(musicId)
-        .musicFileKey(fileKey)
+        //.musicFileKey(fileKey)
         .build();
 
     HttpHeaders headers = new HttpHeaders();
