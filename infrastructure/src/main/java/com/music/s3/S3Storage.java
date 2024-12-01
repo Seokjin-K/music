@@ -34,7 +34,7 @@ public class S3Storage implements FileStorage {
 
   private final AmazonS3 amazonS3;
   private final TransferManager transferManager;
-  private final com.music.s3.fileValidator fileValidator;
+  private final FileValidator fileValidator;
 
   @Value("${aws.s3.bucket}")
   private String bucket;
