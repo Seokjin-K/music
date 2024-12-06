@@ -58,8 +58,8 @@ public class MusicUploadService {
     Music music = createMusic(request, album, fileKeys);
     musicRepository.save(music);
 
-    final String LYRICS_KEY = fileKeys.getLyricsKey();
-    if (LYRICS_KEY != null && !LYRICS_KEY.isEmpty()) {
+    final String lyricsKey = fileKeys.getLyricsKey();
+    if (hasLyricsFile(lyricFile)) {
       Lyrics lyrics = Lyrics.builder()
           .music(music)
           .lyricsFileKey(fileKeys.getLyricsKey())
@@ -71,7 +71,7 @@ public class MusicUploadService {
 
     // TODO: 발매일 오후6에 'RELEASED' 상태 되도록 스케줄링 등록 필요
 
-    return MusicResponse.from(music, LYRICS_KEY);
+    return MusicResponse.from(music, lyricsKey);
   }
 
   private FileKeys processAudioFileConversion(
@@ -82,7 +82,7 @@ public class MusicUploadService {
 
     } catch (IOException e) {
       log.error("오디오 파일 프로세싱 실패. {}", e.getMessage());
-      throw new RuntimeException(); // TODO: CustomException 으로 변경 필요
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경 필요
     }
   }
 
