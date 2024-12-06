@@ -95,18 +95,24 @@ public class S3Storage implements FileStorage {
 
       log.info("모든 파일 업로드 완료");
       return createFileKeys(trackUpload, directory);
+
     } catch (AmazonServiceException e) {
       log.error("AWS S3 Service error : {}", e.getMessage());
-      throw new RuntimeException(); // TODO: CustomException 으로 변경
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경
+
     } catch (AmazonClientException e) {
       log.error("AWS S3 Client error : {}", e.getMessage());
-      throw new RuntimeException(); // TODO: CustomException 으로 변경
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경
+
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       log.error("File upload interrupted : {}", e.getMessage());
-      throw new RuntimeException(); // TODO: CustomException 으로 변경
-    } catch (IOException e) {
       throw new RuntimeException(e); // TODO: CustomException 으로 변경
+
+    } catch (IOException e) {
+      log.error("File upload IOException : {}", e.getMessage());
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경
+
     } finally {
       cleanup(files);
     }
