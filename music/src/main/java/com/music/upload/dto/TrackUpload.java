@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 
+@Slf4j
 @Getter
 @Builder
 public class TrackUpload {
@@ -32,7 +34,6 @@ public class TrackUpload {
   public List<File> getFiles() {
     List<File> files = this.musicUpload.getFiles();
     this.getLyricsUploadOptional().ifPresent(lyrics -> files.add(lyrics.getLyricsFile()));
-    System.out.println("\n\n------------------------- 가사 파일 추가 완료 -------------------------\n\n");
     return files;
   }
 }

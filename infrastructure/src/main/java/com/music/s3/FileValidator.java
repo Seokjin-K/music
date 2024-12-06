@@ -3,7 +3,6 @@ package com.music.s3;
 import java.io.File;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Component
@@ -44,19 +43,6 @@ public class FileValidator {
   public void validateFileName(String filename) {
     if (filename == null || filename.trim().isEmpty()) {
       log.error("파일명이 유효하지 않습니다.");
-      throw new RuntimeException(); // TODO: CustomException 으로 변경
-    }
-  }
-
-  public void validateMultipartFile(MultipartFile multipartFile) {
-    ensureMultipartFileNotEmpty(multipartFile);
-    validateFileName(multipartFile.getOriginalFilename());
-    validateContentType(multipartFile.getContentType());
-  }
-
-  public void ensureMultipartFileNotEmpty(MultipartFile multipartFile) {
-    if (multipartFile == null || multipartFile.isEmpty()) {
-      log.error("MultipartFile 비어있습니다.");
       throw new RuntimeException(); // TODO: CustomException 으로 변경
     }
   }
