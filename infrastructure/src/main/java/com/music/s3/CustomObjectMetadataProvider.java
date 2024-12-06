@@ -30,18 +30,28 @@ public class CustomObjectMetadataProvider implements ObjectMetadataProvider {
   public void provideObjectMetadata(File file, ObjectMetadata metadata) {
     if (musicIterator.hasNext()) {
       applyMusicMetadata(musicIterator.next(), metadata);
+
       log.info(
-          "\napplyMusicMetadata for file {}: Content-Type: {}, Content-Length: {}, User Metadata: {}\n",
-          file.getName(), metadata.getContentType(), metadata.getContentLength(), metadata.getUserMetadata());
+          "applyMusicMetadata for file {}: Content-Type: {}, Content-Length: {}, User Metadata: {}",
+          file.getName(),
+          metadata.getContentType(),
+          metadata.getContentLength(),
+          metadata.getUserMetadata()
+      );
     } else if (lyricsUpload != null && !isLyricsProcessed) {
       applyLyricsMetadata(file, metadata);
-      log.info("\napplyLyricsMetadata : {}\n", metadata);
+
+      log.info("applyLyricsMetadata : {}", metadata);
       log.info(
-          "\napplyLyricsMetadata for file {}: Content-Type: {}, Content-Length: {}, User Metadata: {}\n",
-          file.getName(), metadata.getContentType(), metadata.getContentLength(), metadata.getUserMetadata());
+          "applyLyricsMetadata for file {}: Content-Type: {}, Content-Length: {}, User Metadata: {}",
+          file.getName(),
+          metadata.getContentType(),
+          metadata.getContentLength(),
+          metadata.getUserMetadata()
+      );
       isLyricsProcessed = true;
     } else {
-      log.warn("\nUnexpected file encountered: {}\n", file.getName());
+      log.warn("Unexpected file encountered: {}", file.getName());
     }
   }
 
