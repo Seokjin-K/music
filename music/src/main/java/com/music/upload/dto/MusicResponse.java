@@ -1,4 +1,4 @@
-package com.music.dto;
+package com.music.upload.dto;
 
 import com.music.eneity.Music;
 import com.music.eneity.constants.Genre;
@@ -21,11 +21,11 @@ public class MusicResponse {
   private Boolean titleTrack;
   private ReleaseStatus releaseStatus;
 
-  public static MusicResponse from(Music music) {
+  public static MusicResponse from(Music music, String musicFileKey) {
     return MusicResponse.builder()
         .id(music.getId())
         .albumId(music.getAlbum().getId())
-        .musicFileKey(music.getMusicFileKey())
+        .musicFileKey(musicFileKey)
         .title(music.getTitle())
         .trackNumber(music.getTrackNumber())
         .duration(music.getDuration())

@@ -1,11 +1,13 @@
-package com.music.service;
+package com.music.streaming.service;
 
-import com.music.dto.LyricsResponse;
-import com.music.dto.StreamResponse;
+import com.music.constatns.AudioQuality;
+import com.music.streaming.dto.LyricsResponse;
+import com.music.streaming.dto.StreamResponse;
 import com.music.eneity.Music;
 import com.music.eneity.constants.ReleaseStatus;
 import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
+import com.music.adaptor.FileStorage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,20 +26,25 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MusicStreamingService {
 
+  private static final String QUALITY_HEADER_NAME = "Stream-Quality";
   private final MusicRepository musicRepository;
   private final LyricsRepository lyricsRepository;
-  private final FileStorageService fileStorageService;
+  private final FileStorage fileStorageService;
 
   @Transactional(readOnly = true)
   public StreamResponse musicStreaming(Long musicId, HttpHeaders headers) {
 
     Music music = getMusic(musicId);
 
-    InputStream audioStream =
-        fileStorageService.getFileStream(music.getMusicFileKey());
+    AudioQuality streamQuality = AudioQuality.from(headers.getFirst(QUALITY_HEADER_NAME));
+    String musicFileKey = streamQuality.getFileKey(music);
+
+    log.info("musicFileKey : {}", musicFileKey);
+
+    InputStream audioStream = fileStorageService.getFileStream(musicFileKey);
     InputStreamResource resource = new InputStreamResource(audioStream);
 
-    HttpHeaders responseHeaders = new HttpHeaders(); // 응답 헤더 객체 생성
+    HttpHeaders responseHeaders = new HttpHeaders();
     responseHeaders.setContentType(MediaType.parseMediaType("audio/mpeg"));
 
     return StreamResponse.builder()

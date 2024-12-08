@@ -1,4 +1,4 @@
-package com.music.dto;
+package com.music.upload.dto;
 
 import com.music.eneity.constants.Genre;
 import java.time.LocalDate;
@@ -10,6 +10,7 @@ import lombok.Getter;
 
 @Getter
 public class MusicUploadRequest {
+
   @NotNull(message = "앨범 아이디는 필수입니다.")
   private Long albumId;
 

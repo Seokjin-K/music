@@ -34,7 +34,13 @@ public class Music extends BaseEntity {
   private Album album;
 
   @Column(nullable = false)
-  private String musicFileKey;
+  private String highQualityFileKey;
+
+  @Column(nullable = false)
+  private String mediumQualityFileKey;
+
+  @Column(nullable = false)
+  private String lowQualityFileKey;
 
   @Column(nullable = false, length = 200)
   private String title;
