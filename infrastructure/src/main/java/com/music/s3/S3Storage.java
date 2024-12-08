@@ -5,6 +5,8 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.event.ProgressListener;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.transfer.MultipleFileUpload;
 import com.amazonaws.services.s3.transfer.ObjectMetadataProvider;
 import com.amazonaws.services.s3.transfer.TransferManager;
@@ -48,10 +50,15 @@ public class S3Storage implements FileStorage {
   @Override
   public InputStream getFileStream(String fileKey) {
     try {
-      return amazonS3.getObject(bucket, fileKey).getObjectContent();
+      S3Object s3Object = amazonS3.getObject(bucket, fileKey);
+      Map<String, String> userMetadata = s3Object.getObjectMetadata().getUserMetadata();
+
+      log.info("Stream-Quality : {}", userMetadata.get("quality"));
+      return s3Object.getObjectContent();
+
     } catch (AmazonS3Exception e) {
       log.error("파일 가져오기 실패. key: {}, error: {}", fileKey, e.getMessage());
-      throw new RuntimeException(); // TODO: CustomException 으로 변경
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경
     }
   }
 
@@ -131,7 +138,7 @@ public class S3Storage implements FileStorage {
     List<String> fileKeyList = new ArrayList<>(files.size());
     directory += "/";
 
-    for (File file : files){
+    for (File file : files) {
       fileKeyList.add(directory + file.getName());
     }
 
