@@ -1,5 +1,6 @@
 package com.music.streaming.service;
 
+import com.music.constatns.AudioQuality;
 import com.music.streaming.dto.LyricsResponse;
 import com.music.streaming.dto.StreamResponse;
 import com.music.eneity.Music;
@@ -14,7 +15,9 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MusicStreamingService {
 
+  private static final String QUALITY_HEADER_NAME = "Stream-Quality";
   private final MusicRepository musicRepository;
   private final LyricsRepository lyricsRepository;
   private final FileStorage fileStorageService;
@@ -30,20 +34,23 @@ public class MusicStreamingService {
   @Transactional(readOnly = true)
   public StreamResponse musicStreaming(Long musicId, HttpHeaders headers) {
 
-    /*Music music = getMusic(musicId);
+    Music music = getMusic(musicId);
 
-    InputStream audioStream =
-        fileStorageService.getFileStream(music.getMusicFileKey());
+    AudioQuality streamQuality = AudioQuality.from(headers.getFirst(QUALITY_HEADER_NAME));
+    String musicFileKey = streamQuality.getFileKey(music);
+
+    log.info("musicFileKey : {}", musicFileKey);
+
+    InputStream audioStream = fileStorageService.getFileStream(musicFileKey);
     InputStreamResource resource = new InputStreamResource(audioStream);
 
-    HttpHeaders responseHeaders = new HttpHeaders(); // 응답 헤더 객체 생성
+    HttpHeaders responseHeaders = new HttpHeaders();
     responseHeaders.setContentType(MediaType.parseMediaType("audio/mpeg"));
 
     return StreamResponse.builder()
         .headers(responseHeaders)
         .resource(resource)
-        .build();*/
-    return null;
+        .build();
   }
 
   public LyricsResponse getLyrics(Long musicId) {
