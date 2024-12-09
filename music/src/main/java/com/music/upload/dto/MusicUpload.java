@@ -31,10 +31,6 @@ public class MusicUpload {
         .build();
   }
 
-  public Set<AudioQuality> getAudioQuality() {
-    return fileByAudioQuality.keySet();
-  }
-
   public List<File> getFiles() {
     return new ArrayList<>(fileByAudioQuality.values());
   }

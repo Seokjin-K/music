@@ -66,7 +66,7 @@ class MusicStreamingServiceTest {
         .thenReturn(new ByteArrayInputStream(new byte[0]));
 
     // when
-    StreamResponse response = musicStreamingService.musicStreaming(musicId, headers);
+    StreamResponse response = musicStreamingService.musicStreaming(musicId, "HIGH");
 
     // then
     assertThat(response.getHeaders().getContentType())
@@ -84,7 +84,7 @@ class MusicStreamingServiceTest {
 
     // when & then
     assertThatThrownBy(() ->
-        musicStreamingService.musicStreaming(1L, new HttpHeaders()))
+        musicStreamingService.musicStreaming(1L, "HIGH"))
         .isInstanceOf(RuntimeException.class); // TODO: CustomException 으로 변경
   }
 

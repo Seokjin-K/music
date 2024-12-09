@@ -1,4 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/music_streaming
+      uri: mongodb://localhost:27017/music_platform
+      host: localhost
+      port: 27017
+      database: music_streaming

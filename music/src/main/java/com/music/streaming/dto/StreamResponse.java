@@ -9,6 +9,6 @@ import org.springframework.http.HttpHeaders;
 @Builder
 public class StreamResponse {
 
-  HttpHeaders headers;
-  InputStreamResource resource;
+  private HttpHeaders headers;
+  private InputStreamResource resource;
 }
