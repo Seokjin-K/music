@@ -22,6 +22,7 @@ public class MongoStreamingLogger implements StreamingLogger {
   @Override
   public StreamingStartResponse logStart(StreamingStartRequest request) {
     String sessionId = UUID.randomUUID().toString();
+
     StreamingLog streamingLog = StreamingLog.builder()
         .musicId(request.getMusicId())
         .sessionId(sessionId)
@@ -46,6 +47,7 @@ public class MongoStreamingLogger implements StreamingLogger {
           .orElseThrow(RuntimeException::new);
 
       streamingLog.updateEndInfo(LocalDateTime.now(), request.getPlayedDuration());
+      streamingLogRepository.save(streamingLog);
 
       log.info("로그 기록 종료 - sessionId : {}", request.getSessionId());
     } catch (Exception e) {
