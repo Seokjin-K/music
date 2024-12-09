@@ -48,16 +48,17 @@ public class S3Storage implements FileStorage {
   }
 
   @Override
-  public InputStream getFileStream(String fileKey) {
+  public InputStream getFileStream(String musicFileKey) {
     try {
-      S3Object s3Object = amazonS3.getObject(bucket, fileKey);
+      S3Object s3Object = amazonS3.getObject(bucket, musicFileKey);
       Map<String, String> userMetadata = s3Object.getObjectMetadata().getUserMetadata();
 
+      log.info("musicFileKey : {}", musicFileKey);
       log.info("Stream-Quality : {}", userMetadata.get("quality"));
       return s3Object.getObjectContent();
 
     } catch (AmazonS3Exception e) {
-      log.error("파일 가져오기 실패. key: {}, error: {}", fileKey, e.getMessage());
+      log.error("파일 가져오기 실패. key: {}, error: {}", musicFileKey, e.getMessage());
       throw new RuntimeException(e); // TODO: CustomException 으로 변경
     }
   }
