@@ -2,6 +2,7 @@ package com.music.streaming.dto;
 
 import com.music.eneity.constants.LyricsFormat;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
 
 @Getter
@@ -9,5 +10,7 @@ import lombok.Getter;
 public class LyricsResponse {
 
   private LyricsFormat format;
-  private String content;
+
+  @Builder.Default
+  private String content = "가사 정보가 없습니다.";
 }
