@@ -1,7 +1,6 @@
 package com.music.controller;
 
 import com.music.adaptor.StreamingLogger;
-import com.music.eneity.StreamingLog;
 import com.music.streaming.dto.LyricsResponse;
 import com.music.streaming.dto.StreamResponse;
 import com.music.streaming.dto.StreamingEndRequest;
