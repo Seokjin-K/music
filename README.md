@@ -118,7 +118,7 @@
   - DB에서 삭제하지 않음
 
 ## ERD
-![music_ERD](https://github.com/user-attachments/assets/624edbb5-336a-4d04-ac5b-c2039a812b68)
+![music_ERD](https://github.com/user-attachments/assets/1163b994-0a16-416b-bc90-056421a1e714)
 
 ## Trouble Shooting
 
