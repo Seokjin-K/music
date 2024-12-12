@@ -3,7 +3,7 @@ package com.music.chart.service;
 import com.music.chart.dto.AggregationResult;
 import com.music.chart.period.ChartPeriod;
 import com.music.chart.util.ChartDataConverter;
-import com.music.chart.util.Validator;
+import com.music.chart.util.MusicChartValidator;
 import com.music.eneity.Music;
 import com.music.eneity.MusicChart;
 import com.music.eneity.constants.ChartType;
@@ -80,7 +80,6 @@ public class MusicChartDBService {
 
     Long musicId = aggregationResult.getMusicId();
     Music music = musicMap.get(musicId);
-    Validator.validateMusic(music, musicId);
 
     Integer previousRank = previousRanks.get(musicId);
     Integer rankChange = previousRank != null ? previousRank - rank : null;
@@ -102,6 +101,7 @@ public class MusicChartDBService {
     List<Music> musicList = musicRepository.findAllByIdWithAlbumAndArtist(musicIds);
 
     for (Music music : musicList) {
+      MusicChartValidator.validateMusic(music);
       musicMap.put(music.getId(), music);
     }
     return musicMap;

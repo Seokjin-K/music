@@ -5,7 +5,7 @@ import com.music.chart.period.ChartPeriod;
 import com.music.chart.period.ChartPeriodFactory;
 import com.music.chart.util.ChartAggregationBuilder;
 import com.music.chart.util.ChartDataConverter;
-import com.music.chart.util.Validator;
+import com.music.chart.util.MusicChartValidator;
 import com.music.eneity.Music;
 import com.music.chart.dto.AggregationResult;
 import com.music.eneity.StreamingLog;
@@ -92,8 +92,6 @@ public class MusicChartService {
     for (int i = 0; i < aggregationResults.size(); i++) {
       AggregationResult aggregationResult = aggregationResults.get(i);
       Music music = musicMap.get(aggregationResult.getMusicId());
-      Validator.validateMusic(music, aggregationResult.getMusicId());
-
       chartResponses.add(
           ChartResponse.of(music, i + 1, aggregationResult.getPlayCount())
       );
