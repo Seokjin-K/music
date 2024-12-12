@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -64,4 +65,12 @@ public class Music extends BaseEntity {
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private ReleaseStatus releaseStatus;
+
+  public String getArtistName(){
+    return this.album.getArtistName();
+  }
+
+  public String getCoverFileKey(){
+    return this.getAlbum().getCoverFileKey();
+  }
 }

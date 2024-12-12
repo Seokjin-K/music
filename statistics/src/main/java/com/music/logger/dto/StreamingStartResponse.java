@@ -1,4 +1,4 @@
-package com.music.streaming.dto;
+package com.music.logger.dto;
 
 import com.music.eneity.StreamingLog;
 import java.time.LocalDateTime;
@@ -11,14 +11,14 @@ public class StreamingStartResponse {
 
   private final Long musicId;
   private final String sessionId;
-  private final Integer duration;
+  private final Integer totalDuration;
   private final LocalDateTime startTime;
 
   public static StreamingStartResponse from(StreamingLog streamingLog) {
     return StreamingStartResponse.builder()
         .musicId(streamingLog.getMusicId())
         .sessionId(streamingLog.getSessionId())
-        .duration(streamingLog.getDuration())
+        .totalDuration(streamingLog.getTotalDuration())
         .startTime(streamingLog.getStartTime())
         .build();
   }

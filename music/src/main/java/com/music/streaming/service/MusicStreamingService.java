@@ -1,6 +1,5 @@
 package com.music.streaming.service;
 
-import com.music.adaptor.StreamingLogger;
 import com.music.constatns.AudioQuality;
 import com.music.streaming.dto.LyricsResponse;
 import com.music.streaming.dto.StreamResponse;
@@ -13,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +29,6 @@ public class MusicStreamingService {
   private final MusicRepository musicRepository;
   private final LyricsRepository lyricsRepository;
   private final FileStorage fileStorageService;
-  private final StreamingLogger streamingLogger;
 
   @Transactional(readOnly = true)
   public StreamResponse musicStreaming(Long musicId, String quality) {

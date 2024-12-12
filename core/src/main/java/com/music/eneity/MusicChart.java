@@ -1,9 +1,7 @@
 package com.music.eneity;
 
-import com.music.eneity.constants.AlbumType;
-import com.music.eneity.constants.Genre;
-import com.music.eneity.constants.ReleaseStatus;
-import java.time.LocalDate;
+import com.music.eneity.constants.ChartType;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,41 +22,30 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Album extends BaseEntity {
+public class MusicChart extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "artist_id", nullable = false)
-  private Artist artist;
-
-  @Column(nullable = false)
-  private String title;
-
-  @Column
-  private String coverFileKey;
+  @JoinColumn(name = "music_id", nullable = false)
+  private Music music;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private Genre genre;
-
-  @Column
-  private String description;
-
-  @Enumerated(EnumType.STRING)
-  @Column(nullable = false)
-  private AlbumType type;
+  private ChartType chartType;
 
   @Column(nullable = false)
-  private LocalDate releaseAt;
+  private LocalDateTime startTime;
 
-  @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private ReleaseStatus status;
+  private LocalDateTime endTime;
 
-  public String getArtistName() {
-    return this.artist.getName();
-  }
+  @Column(nullable = false)
+  private Integer chartRank; // 'rank' 는 SQL 예약어이기 때문에 'chartRank' 사용
+
+  private Long playCount;
+
+  private Integer rankChange;
 }
