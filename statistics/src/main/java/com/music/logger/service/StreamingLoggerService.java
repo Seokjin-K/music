@@ -1,4 +1,4 @@
-package com.music.logger;
+package com.music.logger.service;
 
 import com.music.eneity.StreamingLog;
 import com.music.logger.dto.StreamingEndResponse;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class StreamingLogger {
+public class StreamingLoggerService {
 
   private final StreamingLogRepository streamingLogRepository;
 
