@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import javax.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,16 +18,14 @@ public class StreamingLog {
   private Long musicId;
   private String sessionId;
 
-  @CreatedDate
   private LocalDateTime startTime;
+
+  @Indexed(expireAfterSeconds = 365 * 24 * 60 * 60) // 365일 후 자동 삭제
   private LocalDateTime endTime;
 
-  private Integer duration;
+  private Integer totalDuration;
   private Integer playedDuration;
   private Double playedRatio;
-
-  @Indexed(expireAfterSeconds = 30 * 24 * 60 * 60) // 30일 후 자동 삭제
-  private LocalDateTime createdAt;
 
   public void updateEndInfo(LocalDateTime endTime, Integer playedDuration) {
     this.endTime = endTime;
@@ -37,8 +34,8 @@ public class StreamingLog {
   }
 
   public void calculatePlayRatio() {
-    if (duration != null && playedDuration != null) {
-      this.playedRatio = (double) playedDuration / duration * 100;
+    if (this.totalDuration != null && this.playedDuration != null) {
+      this.playedRatio = (double) this.playedDuration / this.totalDuration * 100;
     }
   }
 }
