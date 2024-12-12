@@ -1,8 +1,16 @@
 dependencies {
     implementation project(":common")
+    implementation project(":core")
     implementation project(":music")
+    implementation project(":statistics")
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // MongoDB
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     // AWS S3
     implementation 'com.amazonaws:aws-java-sdk-s3:1.12.174' // 버킷 접근 라이브러리
