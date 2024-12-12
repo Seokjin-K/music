@@ -26,6 +26,8 @@ public class RedisStorage implements MusicChartCache {
     try {
       String chartKey = CHART_KEY_PREFIX + chartType.name();
 
+      redisTemplate.delete(chartKey);
+
       ZSetOperations<String, Object> zSetOps = redisTemplate.opsForZSet();
       chartResponses.forEach(chartResponse ->
           zSetOps.add(chartKey, chartResponse, chartResponse.getChartRank())
