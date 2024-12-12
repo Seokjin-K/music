@@ -1,6 +1,6 @@
 package com.music.controller;
 
-import com.music.logger.StreamingLogger;
+import com.music.logger.service.StreamingLoggerService;
 import com.music.logger.dto.StreamingEndRequest;
 import com.music.logger.dto.StreamingEndResponse;
 import com.music.logger.dto.StreamingStartRequest;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LogController {
 
-  private final StreamingLogger streamingLogger;
+  private final StreamingLoggerService streamingLogger;
 
   @PostMapping("/start")
   public ResponseEntity<StreamingStartResponse> startStreamingLog(
