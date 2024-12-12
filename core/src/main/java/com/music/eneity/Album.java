@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Album extends BaseEntity{
+public class Album extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,4 +57,8 @@ public class Album extends BaseEntity{
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private ReleaseStatus status;
+
+  public String getArtistName() {
+    return this.artist.getName();
+  }
 }
