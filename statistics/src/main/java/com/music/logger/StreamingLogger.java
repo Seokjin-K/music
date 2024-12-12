@@ -1,47 +1,48 @@
-package com.music.service;
+package com.music.logger;
 
-import com.music.adaptor.StreamingLogger;
 import com.music.eneity.StreamingLog;
+import com.music.logger.dto.StreamingEndResponse;
 import com.music.repository.StreamingLogRepository;
-import com.music.streaming.dto.StreamingEndRequest;
-import com.music.streaming.dto.StreamingStartRequest;
-import com.music.streaming.dto.StreamingStartResponse;
+import com.music.logger.dto.StreamingEndRequest;
+import com.music.logger.dto.StreamingStartRequest;
+import com.music.logger.dto.StreamingStartResponse;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@Component
+@Service
+@Transactional
 @RequiredArgsConstructor
-public class MongoStreamingLogger implements StreamingLogger {
+public class StreamingLogger {
 
   private final StreamingLogRepository streamingLogRepository;
 
-  @Override
   public StreamingStartResponse logStart(StreamingStartRequest request) {
     String sessionId = UUID.randomUUID().toString();
+
+    LocalDateTime now = LocalDateTime.now();
 
     StreamingLog streamingLog = StreamingLog.builder()
         .musicId(request.getMusicId())
         .sessionId(sessionId)
-        .duration(request.getDuration())
-        .startTime(LocalDateTime.now())
+        .startTime(now)
+        .totalDuration(request.getTotalDuration())
         .build();
 
     try {
       streamingLogRepository.save(streamingLog);
-
-      log.info("로그 기록 시작 - sessionId : {}", sessionId);
+      log.info("로그 기록 시작 성공 - sessionId : {}", sessionId);
     } catch (Exception e) {
       log.info("로그 시작 실패 - sessionId : {}", sessionId);
     }
     return StreamingStartResponse.from(streamingLog);
   }
 
-  @Override
-  public void logEnd(StreamingEndRequest request) {
+  public StreamingEndResponse logEnd(StreamingEndRequest request) {
     try {
       StreamingLog streamingLog = streamingLogRepository.findBySessionId(request.getSessionId())
           .orElseThrow(RuntimeException::new);
@@ -49,9 +50,11 @@ public class MongoStreamingLogger implements StreamingLogger {
       streamingLog.updateEndInfo(LocalDateTime.now(), request.getPlayedDuration());
       streamingLogRepository.save(streamingLog);
 
-      log.info("로그 기록 종료 - sessionId : {}", request.getSessionId());
+      log.info("로그 기록 마침 성공 - sessionId : {}", request.getSessionId());
+      return StreamingEndResponse.from(streamingLog);
     } catch (Exception e) {
       log.info("로그 종료 실패 - sessionId : {}", request.getSessionId());
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경
     }
   }
 }
