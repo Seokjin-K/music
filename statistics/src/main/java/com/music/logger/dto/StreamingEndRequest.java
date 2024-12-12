@@ -1,4 +1,4 @@
-package com.music.streaming.dto;
+package com.music.logger.dto;
 
 import lombok.Builder;
 import lombok.Getter;

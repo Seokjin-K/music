@@ -1,4 +1,4 @@
-package com.music.streaming.dto;
+package com.music.logger.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -8,5 +8,5 @@ import lombok.Getter;
 public class StreamingStartRequest {
 
   private final Long musicId;
-  private final Integer duration;
+  private final Integer totalDuration;
 }
