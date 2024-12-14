@@ -14,7 +14,7 @@ public class SortDirectionConvert implements Converter<String, SortDirection> {
     try {
       return SortDirection.valueOf(direction.toUpperCase());
     } catch (IllegalArgumentException e) {
-      log.error("잘못된 정렬 요청 : {} ", direction);
+      log.error("잘못된 정렬 방향 요청 : {} ", direction);
       throw new RuntimeException(e); // TODO: CustomException 으로 변경
     }
   }
