@@ -13,10 +13,10 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @EnableElasticsearchRepositories
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 
-  @Value("${elasticsearch.host}")
+  @Value("${spring.elasticsearch.host}")
   private String host;
 
-  @Value("${elasticsearch.port}")
+  @Value("${spring.elasticsearch.port}")
   private int port;
 
   @Override
