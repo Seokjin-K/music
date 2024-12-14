@@ -3,6 +3,7 @@ dependencies {
     implementation project(':core')
     implementation project(':infrastructure')
     implementation project(':music')
+    implementation project(':search')
     implementation project(':statistics')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
