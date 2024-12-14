@@ -2,10 +2,8 @@ package com.music.controller;
 
 import com.music.constants.SortDirection;
 import com.music.constants.SortType;
-import com.music.dto.CustomSearchResponse;
 import com.music.dto.IntegratedSearchResponse;
 import com.music.service.SearchService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
