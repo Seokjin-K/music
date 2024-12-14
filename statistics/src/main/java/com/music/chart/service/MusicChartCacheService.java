@@ -1,7 +1,7 @@
 package com.music.chart.service;
 
 import com.music.chart.dto.ChartResponse;
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -2,7 +2,7 @@ package com.music.redis;
 
 import com.music.chart.dto.ChartResponse;
 import com.music.chart.service.MusicChartCache;
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;

@@ -1,7 +1,7 @@
 package com.music.eneity;
 
-import com.music.eneity.constants.Genre;
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.Genre;
+import com.music.constants.ReleaseStatus;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Getter

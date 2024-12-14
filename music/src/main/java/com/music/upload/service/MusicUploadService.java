@@ -12,7 +12,7 @@ import com.music.upload.dto.MusicUploadRequest;
 import com.music.eneity.Album;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.ReleaseStatus;
 import com.music.repository.AlbumRepository;
 import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;

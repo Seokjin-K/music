@@ -1,6 +1,6 @@
 package com.music.upload.dto;
 
-import com.music.eneity.constants.Genre;
+import com.music.constants.Genre;
 import java.time.LocalDate;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;

@@ -4,7 +4,7 @@ import com.music.constatns.AudioQuality;
 import com.music.streaming.dto.LyricsResponse;
 import com.music.streaming.dto.StreamResponse;
 import com.music.eneity.Music;
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.ReleaseStatus;
 import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
 import com.music.adaptor.FileStorage;

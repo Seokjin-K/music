@@ -1,6 +1,6 @@
 package com.music.eneity;
 
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;

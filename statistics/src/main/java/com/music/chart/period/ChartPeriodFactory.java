@@ -1,6 +1,6 @@
 package com.music.chart.period;
 
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import java.time.LocalDateTime;
 import java.util.Map;
 import org.springframework.stereotype.Component;
