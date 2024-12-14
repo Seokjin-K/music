@@ -11,8 +11,8 @@ import org.elasticsearch.search.sort.SortOrder;
 public class SortUtils {
 
   public static final Map<SortType, Function<SortOrder, SortBuilder<?>>> SORT_MAP = Map.of(
-      SortType.POPULARITY, order -> SortBuilders.fieldSort("viewCount").order(order),
-      SortType.LATEST, order -> SortBuilders.fieldSort("createdAt").order(order),
+      SortType.POPULARITY, order -> SortBuilders.fieldSort("play_count").order(order),
+      SortType.LATEST, order -> SortBuilders.fieldSort("updated_at").order(order),
       SortType.RELEVANCE, order -> SortBuilders.scoreSort().order(order)
   );
 
