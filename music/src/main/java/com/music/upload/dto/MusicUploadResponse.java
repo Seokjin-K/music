@@ -9,7 +9,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class MusicResponse {
+public class MusicUploadResponse {
 
   private Long id;
   private Long albumId;
@@ -22,8 +22,8 @@ public class MusicResponse {
   private Boolean titleTrack;
   private ReleaseStatus releaseStatus;
 
-  public static MusicResponse from(Music music, String musicFileKey) {
-    return MusicResponse.builder()
+  public static MusicUploadResponse from(Music music, String musicFileKey) {
+    return MusicUploadResponse.builder()
         .id(music.getId())
         .albumId(music.getAlbum().getId())
         .musicFileKey(musicFileKey)
