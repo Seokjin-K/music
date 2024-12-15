@@ -61,9 +61,7 @@ public class MusicUploadService {
       @Nullable MultipartFile lyricFile
   ) {
     Album album = getAlbum(request.getAlbumId());
-
-    businessValidator.validateTrackFile(musicFile, lyricFile); // 검증
-    AudioFileInfo audioFileInfo = getAudioFileInfo(musicFile, lyricFile); // FileKeys and Duration
+    AudioFileInfo audioFileInfo = uploadTrack(musicFile, lyricFile);
 
     Music music = createMusic(request, album, audioFileInfo);
     musicRepository.save(music);
@@ -77,6 +75,11 @@ public class MusicUploadService {
         filekeys.getHighQualityKey(),
         filekeys.getLyricsKey()
     );
+  }
+
+  public AudioFileInfo uploadTrack(MultipartFile musicFile, MultipartFile lyricFile) {
+    businessValidator.validateTrackFile(musicFile, lyricFile); // 검증
+    return getAudioFileInfo(musicFile, lyricFile); // FileKeys and Duration
   }
 
   private AudioFileInfo getAudioFileInfo(
