@@ -1,4 +1,4 @@
-package com.music.upload.dto;
+package com.music.dto.upload;
 
 import com.music.constatns.AudioQuality;
 import com.music.constatns.FileType;
@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;

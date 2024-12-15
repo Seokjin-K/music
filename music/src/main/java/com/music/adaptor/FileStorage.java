@@ -1,7 +1,7 @@
 package com.music.adaptor;
 
-import com.music.upload.dto.FileKeys;
-import com.music.upload.dto.TrackUpload;
+import com.music.dto.upload.FileKeys;
+import com.music.dto.upload.TrackUpload;
 import java.io.InputStream;
 
 public interface FileStorage {

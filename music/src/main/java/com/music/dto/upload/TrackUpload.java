@@ -1,4 +1,4 @@
-package com.music.upload.dto;
+package com.music.dto.upload;
 
 import java.io.File;
 import java.util.List;

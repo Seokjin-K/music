@@ -1,4 +1,4 @@
-package com.music.upload.dto;
+package com.music.dto.upload;
 
 import com.music.eneity.Music;
 import com.music.eneity.constants.Genre;
