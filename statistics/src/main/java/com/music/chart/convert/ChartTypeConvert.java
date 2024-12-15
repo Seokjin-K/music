@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 public class ChartTypeConvert implements Converter<String, ChartType> {
 
   @Override
-  public ChartType convert(String source) {
+  public ChartType convert(String chartType) {
     try {
-      return ChartType.valueOf(source.toUpperCase());
+      return ChartType.valueOf(chartType.toUpperCase());
     } catch (IllegalArgumentException e) {
-      log.warn("잘못된 ChartType 요청 : {}", source);
+      log.error("잘못된 차트 요청 : {}", chartType);
       throw new RuntimeException(e); // TODO: CustomException 으로 변경
     }
   }
