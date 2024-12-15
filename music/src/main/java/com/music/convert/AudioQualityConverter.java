@@ -22,13 +22,20 @@ public class AudioQualityConverter {
 
   public Map<AudioQuality, File> process(MultipartFile originalFile) throws IOException {
     Map<AudioQuality, File> fileByAudioQuality = new EnumMap<>(AudioQuality.class);
+
     createInitialFiles(originalFile, fileByAudioQuality);
     convertFiles(audioConverter, fileByAudioQuality);
+
     return fileByAudioQuality;
   }
 
+  public int extractDuration(File file) {
+    return audioConverter.extractAudioDuration(file);
+  }
+
   private void createInitialFiles(
-      MultipartFile originalFile, Map<AudioQuality, File> fileByAudioQuality) throws IOException {
+      MultipartFile originalFile, Map<AudioQuality, File> fileByAudioQuality
+  ) throws IOException {
 
     File highQualityFile = FileUtils.convertMultipartFileToFile(originalFile);
     fileByAudioQuality.put(AudioQuality.HIGH, highQualityFile);
@@ -42,8 +49,8 @@ public class AudioQualityConverter {
   }
 
   private void convertFiles(
-      AudioConverter audioConverter, Map<AudioQuality, File> fileByAudioQuality) {
-
+      AudioConverter audioConverter, Map<AudioQuality, File> fileByAudioQuality
+  ) {
     for (AudioQuality quality : EnumSet.of(AudioQuality.MEDIUM, AudioQuality.LOW)) {
       fileByAudioQuality.compute(quality, (k, file) -> audioConverter.convert(file, quality));
       log.info("{} 품질 파일 변환 완료", quality);

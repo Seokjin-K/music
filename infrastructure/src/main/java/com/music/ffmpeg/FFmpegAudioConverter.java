@@ -3,11 +3,15 @@ package com.music.ffmpeg;
 import com.music.constatns.AudioQuality;
 import com.music.adaptor.AudioConverter;
 import com.music.util.FileUtils;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.bramp.ffmpeg.FFmpegExecutor;
+import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
+import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -52,6 +56,32 @@ public class FFmpegAudioConverter implements AudioConverter {
       log.error("오디오 파일 변환 실패. {}", e.getMessage());
       throw new RuntimeException();
       // TODO: CustomException 으로 변경
+    }
+  }
+
+  @Override
+  public int extractAudioDuration(File file) {
+    try {
+      ProcessBuilder processBuilder = new ProcessBuilder(
+          "ffprobe",
+          "-v", "quiet",
+          "-show_entries", "format=duration",
+          "-of", "csv=p=0",
+          file.getAbsolutePath()
+      );
+      Process process = processBuilder.start();
+
+      try (BufferedReader reader = new BufferedReader(
+          new InputStreamReader(process.getInputStream()))
+      ) {
+        String result = reader.readLine();
+
+        log.info("Duration : {}", result);
+        return (int) Double.parseDouble(result);
+      }
+    } catch (Exception e) {
+      log.error("Duration 추출 실패 : {}", e.getMessage());
+      throw new RuntimeException(e); // TODO: CustomException 으로 변경
     }
   }
 
