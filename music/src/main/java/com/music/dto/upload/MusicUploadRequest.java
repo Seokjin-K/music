@@ -21,10 +21,6 @@ public class MusicUploadRequest {
   @Min(value = 1, message = "트랙 번호는 1 이상이어야 합니다.")
   private Integer trackNumber;
 
-  @NotNull(message = "재생 시간은 필수입니다.")
-  @Min(value = 1, message = "재생 시간은 1초 이상이어야 합니다.")
-  private Integer duration;
-
   @NotNull(message = "발매일은 필수입니다.")
   @Future(message = "발매일은 미래여야 합니다.")
   private LocalDate releaseAt;
