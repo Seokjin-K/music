@@ -10,6 +10,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class MusicResponse {
+
   private Long id;
   private Long albumId;
   private String musicFileKey;
