@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MusicService {
+public class MusicReadService {
 
   private final MusicRepository musicRepository;
 
