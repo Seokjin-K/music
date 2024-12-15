@@ -3,7 +3,7 @@ package com.music.upload.service;
 import com.music.constatns.AudioQuality;
 import com.music.constatns.FileType;
 import com.music.constatns.LyricsMimeType;
-import com.music.upload.convertor.AudioQualityConverter;
+import com.music.upload.convert.AudioQualityConverter;
 import com.music.upload.dto.MusicUpload;
 import com.music.upload.dto.FileKeys;
 import com.music.upload.dto.TrackUpload;
