@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class MusicResponse {
+public class MusicReadResponse {
 
   private String title;
   private String artistName;
@@ -17,8 +17,8 @@ public class MusicResponse {
   private Genre genre;
   private Boolean titleTrack;
 
-  public static MusicResponse from(MusicResponseProjection projection) {
-    return MusicResponse.builder()
+  public static MusicReadResponse from(MusicResponseProjection projection) {
+    return MusicReadResponse.builder()
         .title(projection.getTitle())
         .artistName(projection.getArtistName())
         .duration(projection.getDuration())
