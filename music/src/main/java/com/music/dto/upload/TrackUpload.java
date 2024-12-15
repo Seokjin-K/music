@@ -36,4 +36,8 @@ public class TrackUpload {
     this.getLyricsUploadOptional().ifPresent(lyrics -> files.add(lyrics.getLyricsFile()));
     return files;
   }
+
+  public int getDuration(){
+    return musicUpload.getDuration();
+  }
 }
