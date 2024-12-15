@@ -46,7 +46,7 @@ public class MusicUploadService {
 
   @Transactional
   //@Scheduled(cron = "*/10 * * * * *") // 10초마다 실행
-  @Scheduled(cron = "0 18 * * *") // 오후 6시 정각마다 실행
+  @Scheduled(cron = "0 0 18 * * *") // 오후 6시 정각마다 실행
   public void releaseMusics() {
     int updateCount = musicRepository
         .updatePendingToReleasedByBeforeNow(ReleaseStatus.PENDING, ReleaseStatus.RELEASED);
@@ -70,13 +70,11 @@ public class MusicUploadService {
     musicRepository.save(music);
 
     final String lyricsKey = fileKeys.getLyricsKey();
+
     if (BusinessValidator.hasLyricsFile(lyricFile)) {
       Lyrics lyrics = createLyrics(lyricFile, music, fileKeys);
-
       lyricsRepository.save(lyrics);
     }
-
-    // TODO: 발매일 오후6에 'RELEASED' 상태 되도록 스케줄링 등록 필요
 
     return MusicUploadResponse.from(music, lyricsKey);
   }
