@@ -15,6 +15,22 @@ public interface MusicRepository extends JpaRepository<Music, Long> {
 
   Optional<Music> findByIdAndReleaseStatus(Long musicId, ReleaseStatus releaseStatus);
 
+  @Query("SELECT "
+      + "m.title as title, "
+      + "ar.name as artistName, "
+      + "m.duration as duration, "
+      + "m.releaseAt as releaseAt, "
+      + "m.genre as genre, "
+      + "m.titleTrack as titleTrack "
+      + "FROM Music m "
+      + "JOIN m.album a "
+      + "JOIN a.artist ar "
+      + "WHERE m.id = :musicId and m.releaseStatus = :releaseStatus")
+  Optional<MusicResponseProjection> findByIdAndReleaseStatusWithAlbumAndArtist(
+      @Param("musicId") Long musicId,
+      @Param("releaseStatus") ReleaseStatus releaseStatus
+  );
+
   @Query("SELECT m FROM Music m "
       + "JOIN FETCH m.album a "
       + "JOIN FETCH a.artist "
@@ -30,5 +46,4 @@ public interface MusicRepository extends JpaRepository<Music, Long> {
       @Param("currentStatus") ReleaseStatus currentStatus,
       @Param("newStatus") ReleaseStatus newStatus
   );
-  // TODO: 메서드 이름에 날짜 정보도 들어가도록 수정
 }
