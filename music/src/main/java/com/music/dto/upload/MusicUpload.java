@@ -15,15 +15,19 @@ import org.springframework.web.multipart.MultipartFile;
 public class MusicUpload {
 
   private final Map<AudioQuality, File> fileByAudioQuality;
+  private final Integer duration;
   private final String directory;
   private final String contentType;
   private final String originalFilename;
 
   public static MusicUpload of(
-      MultipartFile musicFile, Map<AudioQuality, File> convertedMusicFiles) {
+      MultipartFile musicFile,
+      Integer duration,
+      Map<AudioQuality, File> convertedMusicFiles) {
 
     return MusicUpload.builder()
         .fileByAudioQuality(convertedMusicFiles)
+        .duration(duration)
         .directory(FileType.MUSIC.getDirectory())
         .contentType(musicFile.getContentType())
         .originalFilename(musicFile.getOriginalFilename())
