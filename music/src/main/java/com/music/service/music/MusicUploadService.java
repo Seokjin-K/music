@@ -1,4 +1,4 @@
-package com.music.service.upload;
+package com.music.service.music;
 
 import com.music.constatns.AudioQuality;
 import com.music.constatns.LyricsMimeType;
