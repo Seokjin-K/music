@@ -58,7 +58,7 @@ public class MusicUploadService {
   public MusicUploadResponse uploadMusic(
       MusicUploadRequest request,
       MultipartFile musicFile,
-      MultipartFile lyricFile
+      @Nullable MultipartFile lyricFile
   ) {
     Album album = getAlbum(request.getAlbumId());
 
@@ -81,7 +81,7 @@ public class MusicUploadService {
 
   private AudioFileInfo getAudioFileInfo(
       MultipartFile musicFile,
-      @Nullable MultipartFile lyricsFile
+      MultipartFile lyricsFile
   ) {
     try {
       TrackUpload trackUpload = createTrackUpload(musicFile, lyricsFile);
@@ -96,7 +96,7 @@ public class MusicUploadService {
 
   private TrackUpload createTrackUpload(
       MultipartFile musicFile,
-      @Nullable MultipartFile lyricsFile
+      MultipartFile lyricsFile
   ) throws IOException {
     Map<AudioQuality, File> convertedMusicFiles = audioQualityConverter.process(musicFile);
 
