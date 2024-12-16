@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Getter
@@ -66,11 +65,47 @@ public class Music extends BaseEntity {
   @Column(nullable = false)
   private ReleaseStatus releaseStatus;
 
-  public String getArtistName(){
+  public String getArtistName() {
     return this.album.getArtistName();
   }
 
-  public String getCoverFileKey(){
+  public String getCoverFileKey() {
     return this.getAlbum().getCoverFileKey();
+  }
+
+  public void update(
+      String title,
+      LocalDate releaseAt,
+      Genre genre,
+      Boolean titleTrack,
+      ReleaseStatus releaseStatus
+  ) {
+    if (title != null) {
+      this.title = title;
+    }
+    if (releaseAt != null) {
+      this.releaseAt = releaseAt;
+    }
+    if (genre != null) {
+      this.genre = genre;
+    }
+    if (titleTrack != null) {
+      this.titleTrack = titleTrack;
+    }
+    if (releaseStatus != null) {
+      this.releaseStatus = releaseStatus;
+    }
+  }
+
+  public void updateAudioFileInfo(
+      String highQualityFileKey,
+      String mediumQualityFileKey,
+      String lowQualityFileKey,
+      Integer duration
+  ) {
+    this.highQualityFileKey = highQualityFileKey;
+    this.mediumQualityFileKey = mediumQualityFileKey;
+    this.lowQualityFileKey = lowQualityFileKey;
+    this.duration = duration;
   }
 }
