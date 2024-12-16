@@ -4,6 +4,7 @@ import com.music.eneity.Music;
 import com.music.eneity.constants.Genre;
 import com.music.eneity.constants.ReleaseStatus;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,7 +14,9 @@ public class MusicUploadResponse {
 
   private Long id;
   private Long albumId;
-  private String musicFileKey;
+  private String highQualityFileKey;
+  private String mediumQualityFileKey;
+  private String lowQualityFileKey;
   private String lyricsFileKey;
   private String title;
   private Integer trackNumber;
@@ -23,12 +26,14 @@ public class MusicUploadResponse {
   private Boolean titleTrack;
   private ReleaseStatus releaseStatus;
 
-  public static MusicUploadResponse from(Music music, String musicFileKey, String lyricsFileKey) {
+  public static MusicUploadResponse from(Music music, FileKeys fileKeys) {
     return MusicUploadResponse.builder()
         .id(music.getId())
         .albumId(music.getAlbum().getId())
-        .musicFileKey(musicFileKey)
-        .lyricsFileKey(lyricsFileKey)
+        .highQualityFileKey(fileKeys.getHighQualityKey())
+        .mediumQualityFileKey(fileKeys.getMediumQualityKey())
+        .lowQualityFileKey(fileKeys.getLowQualityKey())
+        .lyricsFileKey(fileKeys.getLyricsKey())
         .title(music.getTitle())
         .trackNumber(music.getTrackNumber())
         .duration(music.getDuration())
