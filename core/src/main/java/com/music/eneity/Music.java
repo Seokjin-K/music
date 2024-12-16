@@ -108,4 +108,8 @@ public class Music extends BaseEntity {
     this.lowQualityFileKey = lowQualityFileKey;
     this.duration = duration;
   }
+
+  public void updateReleaseStatus(ReleaseStatus releaseStatus) {
+    this.releaseStatus = releaseStatus;
+  }
 }
