@@ -1,6 +1,6 @@
 package com.music.logger.service;
 
-import com.music.eneity.StreamingLog;
+import com.music.document.StreamingLog;
 import com.music.logger.dto.StreamingEndResponse;
 import com.music.repository.StreamingLogRepository;
 import com.music.logger.dto.StreamingEndRequest;

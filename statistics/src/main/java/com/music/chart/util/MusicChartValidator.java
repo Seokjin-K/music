@@ -1,7 +1,7 @@
 package com.music.chart.util;
 
 import com.music.eneity.Music;
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.ReleaseStatus;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

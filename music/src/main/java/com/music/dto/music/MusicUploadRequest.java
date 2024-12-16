@@ -1,6 +1,10 @@
+<<<<<<<< HEAD:music/src/main/java/com/music/dto/music/MusicUploadRequest.java
 package com.music.dto.music;
+========
+package com.music.dto.upload;
+>>>>>>>> feature/chart:music/src/main/java/com/music/dto/upload/MusicUploadRequest.java
 
-import com.music.eneity.constants.Genre;
+import com.music.constants.Genre;
 import java.time.LocalDate;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;

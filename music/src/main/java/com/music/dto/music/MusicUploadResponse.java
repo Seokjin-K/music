@@ -1,9 +1,13 @@
+<<<<<<<< HEAD:music/src/main/java/com/music/dto/music/MusicUploadResponse.java
 package com.music.dto.music;
+========
+package com.music.dto.upload;
+>>>>>>>> feature/chart:music/src/main/java/com/music/dto/upload/MusicResponse.java
 
 import com.music.dto.upload.FileKeys;
 import com.music.eneity.Music;
-import com.music.eneity.constants.Genre;
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.Genre;
+import com.music.constants.ReleaseStatus;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Getter;

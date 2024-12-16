@@ -1,12 +1,12 @@
 spring:
   profiles:
     include:
-      - chart
       - mongodb
       - mysql
       - s3
       - ffmpeg
       - redis
+      - elasticsearch
   servlet:
     multipart:
       max-file-size: 50MB

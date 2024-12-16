@@ -3,7 +3,7 @@ package com.music.controller;
 import com.music.chart.service.MusicChartService;
 import com.music.chart.dto.ChartResponse;
 import com.music.dto.PageResponse;
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,7 +1,7 @@
 package com.music.eneity;
 
-import com.music.eneity.constants.Genre;
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.Genre;
+import com.music.constants.ReleaseStatus;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;

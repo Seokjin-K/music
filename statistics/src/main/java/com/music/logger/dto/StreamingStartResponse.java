@@ -1,6 +1,6 @@
 package com.music.logger.dto;
 
-import com.music.eneity.StreamingLog;
+import com.music.document.StreamingLog;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;

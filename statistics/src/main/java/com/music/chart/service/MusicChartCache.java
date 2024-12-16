@@ -1,7 +1,7 @@
 package com.music.chart.service;
 
 import com.music.chart.dto.ChartResponse;
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import java.util.List;
 
 public interface MusicChartCache {

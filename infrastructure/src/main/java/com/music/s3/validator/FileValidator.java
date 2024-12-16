@@ -1,4 +1,4 @@
-package com.music.s3;
+package com.music.s3.validator;
 
 import java.io.File;
 import lombok.extern.slf4j.Slf4j;

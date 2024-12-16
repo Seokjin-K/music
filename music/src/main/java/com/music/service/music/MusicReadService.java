@@ -20,7 +20,7 @@ public class MusicReadService {
     return musicRepository.findByIdAndReleaseStatusWithAlbumAndArtist(
             musicId,
             ReleaseStatus.RELEASED
-        )
+        )36
         .map(MusicReadResponse::from)
         .orElseThrow(() -> {
           log.error("음원이 존재하지 않거나, RELEASE 상태가 아닙니다. musicId : {}", musicId);

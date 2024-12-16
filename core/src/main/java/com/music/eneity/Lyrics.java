@@ -1,6 +1,6 @@
 package com.music.eneity;
 
-import com.music.eneity.constants.LyricsFormat;
+import com.music.constants.LyricsFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

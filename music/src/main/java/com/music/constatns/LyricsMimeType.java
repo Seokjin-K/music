@@ -1,6 +1,6 @@
 package com.music.constatns;
 
-import com.music.eneity.constants.LyricsFormat;
+import com.music.constants.LyricsFormat;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;

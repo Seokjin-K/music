@@ -1,4 +1,4 @@
-package com.music.eneity;
+package com.music.document;
 
 import java.time.LocalDateTime;
 import javax.persistence.Id;

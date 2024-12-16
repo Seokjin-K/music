@@ -6,7 +6,7 @@ import com.music.chart.util.ChartDataConverter;
 import com.music.chart.util.MusicChartValidator;
 import com.music.eneity.Music;
 import com.music.eneity.MusicChart;
-import com.music.eneity.constants.ChartType;
+import com.music.constants.ChartType;
 import com.music.repository.MusicChartRepository;
 import com.music.repository.MusicRepository;
 import java.util.ArrayList;

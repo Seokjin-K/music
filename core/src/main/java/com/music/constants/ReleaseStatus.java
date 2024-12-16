@@ -1,4 +1,4 @@
-package com.music.eneity.constants;
+package com.music.constants;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
