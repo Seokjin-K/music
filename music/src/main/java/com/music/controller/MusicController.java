@@ -5,12 +5,14 @@ import com.music.dto.music.MusicUpdateRequest;
 import com.music.dto.music.MusicUpdateResponse;
 import com.music.dto.music.MusicUploadResponse;
 import com.music.dto.music.MusicUploadRequest;
+import com.music.service.music.MusicDeleteService;
 import com.music.service.music.MusicReadService;
 import com.music.service.music.MusicUpdateService;
 import com.music.service.music.MusicUploadService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,7 @@ public class MusicController {
   private final MusicUploadService musicUploadService;
   private final MusicReadService musicReadService;
   private final MusicUpdateService musicUpdateService;
+  private final MusicDeleteService musicDeleteService;
 
   @PostMapping("/upload")
   public ResponseEntity<MusicUploadResponse> uploadMusic(
@@ -52,5 +55,10 @@ public class MusicController {
     return ResponseEntity.ok(
         musicUpdateService.updateMusic(musicId, request, musicFile, lyricsFile)
     );
+  }
+
+  @DeleteMapping("/{musicId}")
+  public ResponseEntity<Long> deleteMusic(@PathVariable Long musicId) {
+    return ResponseEntity.ok(musicDeleteService.deleteMusic(musicId));
   }
 }
