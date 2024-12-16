@@ -1,34 +1,49 @@
-package com.music.dto.upload;
+package com.music.dto.music;
 
+import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
 import com.music.eneity.constants.Genre;
 import com.music.eneity.constants.ReleaseStatus;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.lang.Nullable;
 
 @Getter
 @Builder
-public class MusicUploadResponse {
+public class MusicUpdateResponse {
 
-  private Long id;
-  private Long albumId;
-  private String musicFileKey;
-  private String lyricsFileKey;
+  private Long musicId;
+
+  private Long lyricsId;
+
+  private String highQualityFileKey;
+
+  private String mediumQualityFileKey;
+
+  private String lowQualityFileKey;
+
   private String title;
+
   private Integer trackNumber;
+
   private Integer duration;
+
   private LocalDate releaseAt;
+
   private Genre genre;
+
   private Boolean titleTrack;
+
   private ReleaseStatus releaseStatus;
 
-  public static MusicUploadResponse from(Music music, String musicFileKey, String lyricsFileKey) {
-    return MusicUploadResponse.builder()
-        .id(music.getId())
-        .albumId(music.getAlbum().getId())
-        .musicFileKey(musicFileKey)
-        .lyricsFileKey(lyricsFileKey)
+  public static MusicUpdateResponse of(Music music, @Nullable Lyrics lyrics) {
+    return MusicUpdateResponse.builder()
+        .musicId(music.getId())
+        .lyricsId(lyrics != null ? lyrics.getId() : null)
+        .highQualityFileKey(music.getHighQualityFileKey())
+        .mediumQualityFileKey(music.getMediumQualityFileKey())
+        .lowQualityFileKey(music.getLowQualityFileKey())
         .title(music.getTitle())
         .trackNumber(music.getTrackNumber())
         .duration(music.getDuration())

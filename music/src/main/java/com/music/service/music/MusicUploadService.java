@@ -8,8 +8,8 @@ import com.music.dto.upload.MusicUpload;
 import com.music.dto.upload.FileKeys;
 import com.music.dto.upload.TrackUpload;
 import com.music.dto.upload.LyricsUpload;
-import com.music.dto.upload.MusicUploadResponse;
-import com.music.dto.upload.MusicUploadRequest;
+import com.music.dto.music.MusicUploadResponse;
+import com.music.dto.music.MusicUploadRequest;
 import com.music.eneity.Album;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
@@ -67,17 +67,12 @@ public class MusicUploadService {
     musicRepository.save(music);
 
     final FileKeys filekeys = audioFileInfo.getFileKeys();
-
     uploadLyricsIfExist(lyricFile, music, filekeys);
 
-    return MusicUploadResponse.from(
-        music,
-        filekeys.getHighQualityKey(),
-        filekeys.getLyricsKey()
-    );
+    return MusicUploadResponse.from(music, filekeys);
   }
 
-  public AudioFileInfo uploadTrack(MultipartFile musicFile, MultipartFile lyricFile) {
+  private AudioFileInfo uploadTrack(MultipartFile musicFile, MultipartFile lyricFile) {
     businessValidator.validateTrackFile(musicFile, lyricFile); // 검증
     return getAudioFileInfo(musicFile, lyricFile); // FileKeys and Duration
   }
@@ -116,7 +111,6 @@ public class MusicUploadService {
   private static LyricsUpload createLyricsUploadIfExists(MultipartFile lyricsFile)
       throws IOException {
     LyricsUpload lyricsUpload = null;
-
     if (BusinessValidator.hasLyricsFile(lyricsFile)) {
       File convertedLyricsFile = FileUtils.convertMultipartFileToFile(lyricsFile);
       lyricsUpload = LyricsUpload.of(lyricsFile, convertedLyricsFile);
@@ -126,7 +120,6 @@ public class MusicUploadService {
 
   @Transactional(readOnly = true)
   private Album getAlbum(Long albumId) {
-
     Album album = albumRepository.findById(albumId)
         .orElseThrow(RuntimeException::new); // TODO: CustomException 으로 변경 필요
 

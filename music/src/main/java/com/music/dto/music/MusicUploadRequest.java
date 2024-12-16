@@ -1,4 +1,4 @@
-package com.music.dto.upload;
+package com.music.dto.music;
 
 import com.music.eneity.constants.Genre;
 import java.time.LocalDate;

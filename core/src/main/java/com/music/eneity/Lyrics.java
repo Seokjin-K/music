@@ -37,4 +37,9 @@ public class Lyrics {
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private LyricsFormat lyricsFormat;
+
+  public void updateLyricsFileKey(String newLyricsFileKey, LyricsFormat lyricsFormat) {
+    this.lyricsFileKey = newLyricsFileKey;
+    this.lyricsFormat = lyricsFormat;
+  }
 }
