@@ -1,8 +1,7 @@
-package com.music.streaming.dto;
+package com.music.dto.streaming;
 
 import com.music.eneity.constants.LyricsFormat;
 import lombok.Builder;
-import lombok.Builder.Default;
 import lombok.Getter;
 
 @Getter

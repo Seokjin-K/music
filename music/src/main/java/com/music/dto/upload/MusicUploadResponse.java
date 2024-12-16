@@ -1,4 +1,4 @@
-package com.music.upload.dto;
+package com.music.dto.upload;
 
 import com.music.eneity.Music;
 import com.music.eneity.constants.Genre;
@@ -9,10 +9,12 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class MusicResponse {
+public class MusicUploadResponse {
+
   private Long id;
   private Long albumId;
   private String musicFileKey;
+  private String lyricsFileKey;
   private String title;
   private Integer trackNumber;
   private Integer duration;
@@ -21,11 +23,12 @@ public class MusicResponse {
   private Boolean titleTrack;
   private ReleaseStatus releaseStatus;
 
-  public static MusicResponse from(Music music, String musicFileKey) {
-    return MusicResponse.builder()
+  public static MusicUploadResponse from(Music music, String musicFileKey, String lyricsFileKey) {
+    return MusicUploadResponse.builder()
         .id(music.getId())
         .albumId(music.getAlbum().getId())
         .musicFileKey(musicFileKey)
+        .lyricsFileKey(lyricsFileKey)
         .title(music.getTitle())
         .trackNumber(music.getTrackNumber())
         .duration(music.getDuration())

@@ -1,8 +1,8 @@
-package com.music.streaming.service;
+package com.music.service.streaming;
 
 import com.music.constatns.AudioQuality;
-import com.music.streaming.dto.LyricsResponse;
-import com.music.streaming.dto.StreamResponse;
+import com.music.dto.streaming.LyricsResponse;
+import com.music.dto.streaming.StreamResponse;
 import com.music.eneity.Music;
 import com.music.eneity.constants.ReleaseStatus;
 import com.music.repository.LyricsRepository;

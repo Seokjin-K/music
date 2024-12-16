@@ -1,4 +1,4 @@
-package com.music.upload.dto;
+package com.music.dto.upload;
 
 import java.io.File;
 import java.util.List;
@@ -35,5 +35,9 @@ public class TrackUpload {
     List<File> files = this.musicUpload.getFiles();
     this.getLyricsUploadOptional().ifPresent(lyrics -> files.add(lyrics.getLyricsFile()));
     return files;
+  }
+
+  public int getDuration(){
+    return musicUpload.getDuration();
   }
 }

@@ -6,4 +6,6 @@ import java.io.File;
 public interface AudioConverter {
 
   File convert(File file, AudioQuality audioQuality);
+
+  int extractAudioDuration(File file);
 }
