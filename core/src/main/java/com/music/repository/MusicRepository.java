@@ -46,4 +46,13 @@ public interface MusicRepository extends JpaRepository<Music, Long> {
       @Param("currentStatus") ReleaseStatus currentStatus,
       @Param("newStatus") ReleaseStatus newStatus
   );
+
+  @Modifying
+  @Query("UPDATE Music m "
+      + "SET m.releaseStatus = :status "
+      + "WHERE m.id = :musicId AND m.releaseStatus != :status")
+  int updateMusicStatus(
+      @Param("musicId") Long musicId,
+      @Param("status") ReleaseStatus status
+  );
 }
