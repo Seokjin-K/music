@@ -1,14 +1,14 @@
-package com.music.upload.service;
+package com.music.service.upload;
 
 import com.music.constatns.AudioQuality;
 import com.music.constatns.FileType;
 import com.music.constatns.LyricsMimeType;
-import com.music.upload.dto.MusicUpload;
-import com.music.upload.dto.FileKeys;
-import com.music.upload.dto.TrackUpload;
-import com.music.upload.dto.LyricsUpload;
-import com.music.upload.dto.MusicResponse;
-import com.music.upload.dto.MusicUploadRequest;
+import com.music.dto.upload.MusicUpload;
+import com.music.dto.upload.FileKeys;
+import com.music.dto.upload.TrackUpload;
+import com.music.dto.upload.LyricsUpload;
+import com.music.dto.upload.MusicResponse;
+import com.music.dto.upload.MusicUploadRequest;
 import com.music.eneity.Album;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;

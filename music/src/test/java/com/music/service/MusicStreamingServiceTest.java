@@ -2,14 +2,14 @@ package com.music.service;
 
 import com.music.adaptor.FileStorage;
 import com.music.streaming.dto.LyricsResponse;
-import com.music.streaming.dto.StreamResponse;
+import com.music.dto.streaming.StreamResponse;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
 import com.music.constants.LyricsFormat;
 import com.music.constants.ReleaseStatus;
 import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
-import com.music.streaming.service.MusicStreamingService;
+import com.music.service.streaming.MusicStreamingService;
 import java.io.InputStream;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

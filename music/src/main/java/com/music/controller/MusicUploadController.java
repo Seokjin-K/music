@@ -1,8 +1,8 @@
 package com.music.controller;
 
-import com.music.upload.dto.MusicResponse;
-import com.music.upload.dto.MusicUploadRequest;
-import com.music.upload.service.MusicUploadService;
+import com.music.dto.upload.MusicResponse;
+import com.music.dto.upload.MusicUploadRequest;
+import com.music.service.upload.MusicUploadService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

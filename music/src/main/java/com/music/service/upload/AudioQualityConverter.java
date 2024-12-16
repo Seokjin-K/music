@@ -1,4 +1,4 @@
-package com.music.upload.service;
+package com.music.service.upload;
 
 import com.music.adaptor.AudioConverter;
 import com.music.constatns.AudioQuality;
