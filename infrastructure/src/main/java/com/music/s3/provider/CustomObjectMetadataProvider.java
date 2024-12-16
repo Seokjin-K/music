@@ -1,4 +1,4 @@
-package com.music.s3;
+package com.music.s3.provider;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.transfer.ObjectMetadataProvider;

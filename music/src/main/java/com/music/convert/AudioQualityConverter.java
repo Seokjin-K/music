@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:music/src/main/java/com/music/convert/AudioQualityConverter.java
 package com.music.convert;
-========
-package com.music.service.upload;
->>>>>>>> feature/chart:music/src/main/java/com/music/service/upload/AudioQualityConverter.java
 
 import com.music.adaptor.AudioConverter;
 import com.music.constatns.AudioQuality;

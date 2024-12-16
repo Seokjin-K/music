@@ -1,10 +1,9 @@
-package com.music.s3;
+package com.music.s3.service;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -18,6 +17,7 @@ import com.music.dto.upload.LyricsUpload;
 import com.music.dto.upload.MusicUpload;
 import com.music.dto.upload.FileKeys;
 import com.music.dto.upload.TrackUpload;
+import com.music.s3.provider.CustomObjectMetadataProvider;
 import com.music.s3.util.S3StorageUtils;
 import com.music.s3.validator.S3StorageValidator;
 import com.music.util.FileUtils;

@@ -1,6 +1,6 @@
-package com.music.repository;
+package com.music.projection;
 
-import com.music.eneity.constants.Genre;
+import com.music.constants.Genre;
 import java.time.LocalDate;
 
 public interface MusicResponseProjection {

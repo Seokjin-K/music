@@ -1,7 +1,7 @@
 package com.music.validator;
 
+import com.music.constants.ReleaseStatus;
 import com.music.constatns.FileType;
-import com.music.eneity.constants.ReleaseStatus;
 import java.util.EnumSet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

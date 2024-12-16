@@ -1,6 +1,7 @@
 package com.music.service.music;
 
 import com.music.adaptor.FileStorage;
+import com.music.constants.LyricsFormat;
 import com.music.constatns.AudioQuality;
 import com.music.constatns.FileType;
 import com.music.constatns.LyricsMimeType;
@@ -13,7 +14,6 @@ import com.music.dto.upload.LyricsUpload;
 import com.music.dto.upload.MusicUpload;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
-import com.music.eneity.constants.LyricsFormat;
 import com.music.repository.LyricsRepository;
 import com.music.repository.MusicRepository;
 import com.music.util.FileUtils;

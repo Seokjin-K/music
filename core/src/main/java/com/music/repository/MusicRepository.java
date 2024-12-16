@@ -2,6 +2,7 @@ package com.music.repository;
 
 import com.music.eneity.Music;
 import com.music.constants.ReleaseStatus;
+import com.music.projection.MusicResponseProjection;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

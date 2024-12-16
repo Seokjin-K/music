@@ -1,7 +1,7 @@
 package com.music.service.music;
 
+import com.music.constants.ReleaseStatus;
 import com.music.dto.music.MusicReadResponse;
-import com.music.eneity.constants.ReleaseStatus;
 import com.music.repository.MusicRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class MusicReadService {
     return musicRepository.findByIdAndReleaseStatusWithAlbumAndArtist(
             musicId,
             ReleaseStatus.RELEASED
-        )36
+        )
         .map(MusicReadResponse::from)
         .orElseThrow(() -> {
           log.error("음원이 존재하지 않거나, RELEASE 상태가 아닙니다. musicId : {}", musicId);

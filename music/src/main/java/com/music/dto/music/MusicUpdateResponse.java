@@ -1,9 +1,9 @@
 package com.music.dto.music;
 
+import com.music.constants.Genre;
+import com.music.constants.ReleaseStatus;
 import com.music.eneity.Lyrics;
 import com.music.eneity.Music;
-import com.music.eneity.constants.Genre;
-import com.music.eneity.constants.ReleaseStatus;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:music/src/main/java/com/music/dto/music/MusicUploadResponse.java
 package com.music.dto.music;
-========
-package com.music.dto.upload;
->>>>>>>> feature/chart:music/src/main/java/com/music/dto/upload/MusicResponse.java
 
 import com.music.dto.upload.FileKeys;
 import com.music.eneity.Music;

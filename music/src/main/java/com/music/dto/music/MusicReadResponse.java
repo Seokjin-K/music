@@ -1,7 +1,7 @@
 package com.music.dto.music;
 
-import com.music.eneity.constants.Genre;
-import com.music.repository.MusicResponseProjection;
+import com.music.constants.Genre;
+import com.music.projection.MusicResponseProjection;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.music.service.music;
 
-import com.music.eneity.constants.ReleaseStatus;
+import com.music.constants.ReleaseStatus;
 import com.music.repository.MusicRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
