@@ -23,8 +23,8 @@ public class MusicUpload {
   public static MusicUpload of(
       MultipartFile musicFile,
       Integer duration,
-      Map<AudioQuality, File> convertedMusicFiles) {
-
+      Map<AudioQuality, File> convertedMusicFiles
+  ) {
     return MusicUpload.builder()
         .fileByAudioQuality(convertedMusicFiles)
         .duration(duration)

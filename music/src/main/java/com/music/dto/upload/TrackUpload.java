@@ -19,8 +19,9 @@ public class TrackUpload {
   private final LyricsUpload lyricsUpload;
 
   public static TrackUpload of(
-      MusicUpload musicUpload, LyricsUpload lyricsUpload) {
-
+      MusicUpload musicUpload,
+      LyricsUpload lyricsUpload
+  ) {
     return TrackUpload.builder()
         .musicUpload(musicUpload)
         .lyricsUpload(lyricsUpload)
